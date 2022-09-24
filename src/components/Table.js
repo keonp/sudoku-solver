@@ -2,7 +2,10 @@ import { useState } from 'react';
 
 function Table() {
     const [cellStatus, setCellStatus] = useState(
-        Array.from(Array(9), () => Array(9).fill(false))
+        Array.from(Array(9), () => Array(9).fill({
+            status: false,
+            value: ""
+        }))
     );
 
     const [inputSatus, setInputStatus] = useState(false);
@@ -13,15 +16,27 @@ function Table() {
         // console.log(e.target);
         if (e.target.localName === 'input')  {
             setInputElement(e.target)
-            // console.log(inputElement);
+            console.log(inputElement);
         }
+    }
+
+    function handleValueChange() {
+
     }
 
     function handleKeyPress(e) {
         const targetValue = e.target.value;
         if (/^[1-9]+$/.test(+targetValue)) {
-            inputElement.value = targetValue;
-            console.log(inputElement.value);
+            const id = inputElement.id;
+            
+            const updateCells = cellStatus.map((element, rowIndex) => {
+                element.map((cell, colIndex) => {
+
+                })
+            })
+            console.log(inputElement.id)
+            // inputElement.value = targetValue;
+            // console.log(inputElement.value);
         }
     }
 
@@ -41,8 +56,12 @@ function Table() {
                                         // Return a cell for each column in the row
                                         return (
                                             <td key={`${rowIndex}${colIndex}`}>
-                                                <input className='cell' disabled={inputSatus} type="text" defaultValue={null}/>
-                                                {/* defaultValue={`${rowIndex}${colIndex}` */}
+                                                <input
+                                                    id={`${rowIndex}${colIndex}`}
+                                                    className='cell' disabled={inputSatus}
+                                                    type="text"
+                                                    defaultValue={cellStatus[rowIndex][colIndex].value}
+                                                />
                                             </td>
                                         )
                                     })
