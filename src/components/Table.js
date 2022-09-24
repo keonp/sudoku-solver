@@ -6,14 +6,14 @@ function Table() {
     );
 
     const [inputSatus, setInputStatus] = useState(false);
-    const [inputElement, setInputElement] = useState(false);
+    const [inputElement, setInputElement] = useState(null);
     const [inputValue, setInputValue] = useState(null);
 
     function handleInput(e) {
         // console.log(e.target);
         if (e.target.localName === 'input')  {
             setInputElement(e.target)
-            console.log(inputElement);
+            // console.log(inputElement);
         }
     }
 
@@ -21,6 +21,7 @@ function Table() {
         const targetValue = e.target.value;
         if (/^[1-9]+$/.test(+targetValue)) {
             inputElement.value = targetValue;
+            console.log(inputElement.value);
         }
     }
 
