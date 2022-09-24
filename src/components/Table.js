@@ -6,10 +6,22 @@ function Table() {
     );
 
     const [inputSatus, setInputStatus] = useState(false);
+    const [inputElement, setInputElement] = useState(false);
+    const [inputValue, setInputValue] = useState(null);
 
     function handleInput(e) {
         // console.log(e.target);
-        if (e.target.localName === 'input') console.log('true');
+        if (e.target.localName === 'input')  {
+            setInputElement(e.target)
+            console.log(inputElement);
+        }
+    }
+
+    function handleKeyPress(e) {
+        const targetValue = e.target.value;
+        if (/^[1-9]+$/.test(+targetValue)) {
+            inputElement.value = targetValue;
+        }
     }
 
 
@@ -17,7 +29,7 @@ function Table() {
     return (
         <section>
             <table>
-                <tbody onClick={(e) => handleInput(e)}>
+                <tbody onClick={(e) => handleInput(e)} onChange={(e) => handleKeyPress(e)}>
                     {
                         cellStatus.map((row, rowIndex) => {
                             return (
@@ -28,7 +40,7 @@ function Table() {
                                         // Return a cell for each column in the row
                                         return (
                                             <td key={`${rowIndex}${colIndex}`}>
-                                                <input className='cell' disabled={inputSatus} type="text"/>
+                                                <input className='cell' disabled={inputSatus} type="text" defaultValue={null}/>
                                                 {/* defaultValue={`${rowIndex}${colIndex}` */}
                                             </td>
                                         )

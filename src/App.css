@@ -219,4 +219,28 @@ html {
           clip-path: inset(100%);
   clip: rect(0 0 0 0);
   overflow: hidden;
+}
+
+h1,
+p,
+input,
+table,
+tbody,
+tr,
+td {
+  padding: 0;
+  margin: 0;
+}
+
+table {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.cell {
+  height: 35px;
+  width: 35px;
+  text-align: center;
 }/*# sourceMappingURL=App.css.map */
