@@ -2,41 +2,32 @@ import { useState } from 'react';
 
 function Table() {
     const [cellStatus, setCellStatus] = useState(
-        Array.from(Array(9), () => Array(9).fill({
-            status: false,
-            value: ""
-        }))
+        Array.from(Array(9), () => Array(9).fill(null).map(() => {
+                return {status: false, value: ""}
+            })
+        )
     );
 
     const [inputSatus, setInputStatus] = useState(false);
-    const [inputElement, setInputElement] = useState(null);
-    const [inputValue, setInputValue] = useState(null);
 
     function handleInput(e) {
         // console.log(e.target);
         if (e.target.localName === 'input')  {
-            setInputElement(e.target)
-            console.log(inputElement);
+
+            console.log(e.target)
         }
     }
 
-    function handleValueChange() {
-
-    }
-
     function handleKeyPress(e) {
-        const targetValue = e.target.value;
-        if (/^[1-9]+$/.test(+targetValue)) {
-            const id = inputElement.id;
+        const inputElement = e.target;
+        if (/^[1-9]+$/.test(+inputElement.value)) {
+            const [row, col] = inputElement.id;
+            const updateCells = [...cellStatus];
             
-            const updateCells = cellStatus.map((element, rowIndex) => {
-                element.map((cell, colIndex) => {
+            updateCells[row][col].status = true;
+            updateCells[row][col].value = inputElement.value;
 
-                })
-            })
-            console.log(inputElement.id)
-            // inputElement.value = targetValue;
-            // console.log(inputElement.value);
+            setCellStatus(updateCells);
         }
     }
 
