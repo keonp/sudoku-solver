@@ -4,22 +4,21 @@ function cellValidation(board, row, col, input) {
         for (let col = 0; col < 9; col ++) {
             if (board[row][col].value === input) {
                 // return [[row][col]];
-                console.log(row, col);
-                break;
-                
+                return [+row, col];                
             }
         }
+        return false;
     }
 
     function ColChecker (board, col, input) {
         for (let row = 0; row < 9; row ++) {
             if (board[row][col].value === input) {
                 // return [[row][col]];
-                console.log(row, col);
-                break;
+                return [row, +col];
             }
             
         }
+        return false;
     }
 
     function subGridChecker (board, row, col, input) {
@@ -32,18 +31,19 @@ function cellValidation(board, row, col, input) {
             for (let _col = colStart; _col <= colEnd; _col++) {
                 if (board[_row][_col].value === input) {
                     // return [[row][col]];
-                    console.log(row, col);
-                    break;
+                    return [_row, _col];
+
                 }
             }
         }
+
+        return false;
     }
 
-
-
-    RowChecker(board, row, input);
-    ColChecker (board, col, input);
-    subGridChecker(board, row, col, input);
+    return (RowChecker(board, row, input) || ColChecker (board, col, input) || subGridChecker(board, row, col, input) || false);
+    // RowChecker(board, row, input);
+    // ColChecker (board, col, input);
+    // subGridChecker(board, row, col, input);
 }
 
 export default cellValidation;

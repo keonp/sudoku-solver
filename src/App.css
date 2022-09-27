@@ -243,4 +243,8 @@ table {
   height: 35px;
   width: 35px;
   text-align: center;
+}
+
+.conflict {
+  background-color: red;
 }/*# sourceMappingURL=App.css.map */

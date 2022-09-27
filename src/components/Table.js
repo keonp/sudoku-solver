@@ -5,7 +5,11 @@ import cellValidation from '../utilities/cellValidation';
 function Table() {
     const [cellStatus, setCellStatus] = useState(
         Array.from(Array(9), () => Array(9).fill(null).map(() => {
-                return {status: false, value: ""}
+                return {
+                    status: false, 
+                    value: "",
+                    state: false 
+                }
             })
         )
     );
@@ -27,13 +31,19 @@ function Table() {
         const [row, col] = inputElement.id;
 
         if (value) {
-            cellValidation(updateCells, row, col, value);
-        }
+            const results = cellValidation(updateCells, row, col, value);
+            if (results) {
+                const [_row, _col] = results;
 
+                updateCells[_row][_col].state = 'conflict';
+                updateCells[row][col].state = 'conflict';
+            }
+        }
         updateCells[row][col].status = status;
         updateCells[row][col].value = value;
 
         setCellStatus(updateCells);
+        // revisit with regards to backspace
         setInputCell("");
     }
 
@@ -87,7 +97,8 @@ function Table() {
                                             <td key={`${rowIndex}${colIndex}`}>
                                                 <input
                                                     id={`${rowIndex}${colIndex}`}
-                                                    className='cell' disabled={inputSatus}
+                                                    className={`cell ${cellStatus[rowIndex][colIndex].state}`}
+                                                    disabled={inputSatus}
                                                     type="text"
                                                     defaultValue={cellStatus[rowIndex][colIndex].value}
                                                     maxLength={1}
