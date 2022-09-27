@@ -16,17 +16,18 @@ function Table() {
 
     const [inputSatus, setInputStatus] = useState(false);
     const [inputCell, setInputCell] = useState("");
+    const [conflicts, setConflicts] = useState([""]);
 
     function handleInput(e) {
         // console.log(e.target);
         if (e.target.localName === 'input')  {
 
             setInputCell(e.target);
-            console.log(e.target)
+            // console.log(e.target)
         }
     }
 
-    function updateInputCells(inputElement, value, status) {
+    function updateInputCells(inputElement, value, status, conflicts=null) {
         const updateCells = [...cellStatus];
         const [row, col] = inputElement.id;
 
@@ -35,10 +36,21 @@ function Table() {
             if (results) {
                 const [_row, _col] = results;
 
+                setConflicts([[+row, +col], [_row, _col]]);
+                // compare with .toString()
+
                 updateCells[_row][_col].state = 'conflict';
                 updateCells[row][col].state = 'conflict';
             }
         }
+
+        if (conflicts) {
+            const [conrow1, concol1, conrow2, concol2] = [...conflicts[0], ...conflicts[1]];
+            updateCells[conrow1][concol1].state = false;
+            updateCells[conrow2][concol2].state = false;
+            setConflicts([""]);
+        }
+
         updateCells[row][col].status = status;
         updateCells[row][col].value = value;
 
@@ -64,20 +76,32 @@ function Table() {
         }
     }
 
+    function CompareString(object1, object2) {
+        console.log(object1.toString())
+        console.log(object2.toString())
+        return object1.toString() === object2.toString();
+    }
+
     function handleButtonPress(e) {
         if (inputCell) {
             const button = e.target;
-            console.log(button);
-            console.log(button.value);
+            // console.log(button);
+            // console.log(button.value);
+
+            const cell = [...inputCell.id];
+            console.log(cell)
 
             if (button.value) {
                 updateInputCells(inputCell, button.value, true);
                 inputCell.value = button.value;
+            } else if (CompareString(cell, conflicts[0]) || CompareString(cell, conflicts[1])) {
+                updateInputCells(inputCell, "", false, conflicts);
+                inputCell.value = "";
             } else {
                 updateInputCells(inputCell, "", false);
                 inputCell.value = "";
             }
-            console.log(inputCell);  
+            // console.log(inputCell);  
         }
     }
 
