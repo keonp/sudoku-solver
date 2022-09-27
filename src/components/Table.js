@@ -8,7 +8,8 @@ function Table() {
                 return {
                     status: false, 
                     value: "",
-                    state: false 
+                    state: false,
+                    disable: true
                 }
             })
         )
@@ -41,6 +42,14 @@ function Table() {
 
                 updateCells[_row][_col].state = 'conflict';
                 updateCells[row][col].state = 'conflict';
+
+                updateCells.forEach((element, rIndex) => {
+                    element.forEach((cell, cIndex) => {
+                        if (!(_row === +rIndex && _col === +cIndex) || !(row === rIndex && col === cIndex)) {
+                            updateCells[rIndex][cIndex].disable = false;
+                        }
+                    })
+                })
             }
         }
 
@@ -48,6 +57,7 @@ function Table() {
             const [conrow1, concol1, conrow2, concol2] = [...conflicts[0], ...conflicts[1]];
             updateCells[conrow1][concol1].state = false;
             updateCells[conrow2][concol2].state = false;
+
             setConflicts([""]);
         }
 
@@ -122,7 +132,7 @@ function Table() {
                                                 <input
                                                     id={`${rowIndex}${colIndex}`}
                                                     className={`cell ${cellStatus[rowIndex][colIndex].state}`}
-                                                    disabled={inputSatus}
+                                                    disabled={!cellStatus[rowIndex][colIndex].disable}
                                                     type="text"
                                                     defaultValue={cellStatus[rowIndex][colIndex].value}
                                                     maxLength={1}
