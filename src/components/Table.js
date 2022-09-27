@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { RiDeleteBack2Line } from 'react-icons/ri';
+import cellValidation from '../utilities/cellValidation';
 
 function Table() {
     const [cellStatus, setCellStatus] = useState(
@@ -25,6 +26,10 @@ function Table() {
         const updateCells = [...cellStatus];
         const [row, col] = inputElement.id;
 
+        if (value) {
+            cellValidation(updateCells, row, col, value);
+        }
+
         updateCells[row][col].status = status;
         updateCells[row][col].value = value;
 
@@ -36,7 +41,7 @@ function Table() {
         const inputElement = e.target;
 
         if (/^[1-9]+$/.test(+inputElement.value)) {
-            console.log("you added a number")
+            console.log("you added a number");
             updateInputCells(inputElement, inputElement.value, true);
 
         } else if (inputElement.value === "") {
