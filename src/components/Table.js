@@ -18,16 +18,30 @@ function Table() {
         }
     }
 
+    function updateInputCells(inputElement, status) {
+        const updateCells = [...cellStatus];
+        const [row, col] = inputElement.id;
+
+        updateCells[row][col].status = status;
+        updateCells[row][col].value = inputElement.value;
+
+        setCellStatus(updateCells);
+    }
+
     function handleKeyPress(e) {
         const inputElement = e.target;
-        if (/^[1-9]+$/.test(+inputElement.value)) {
-            const [row, col] = inputElement.id;
-            const updateCells = [...cellStatus];
-            
-            updateCells[row][col].status = true;
-            updateCells[row][col].value = inputElement.value;
 
-            setCellStatus(updateCells);
+        if (/^[1-9]+$/.test(+inputElement.value)) {
+            console.log("you added a number")
+            updateInputCells(inputElement, true);
+
+        } else if (inputElement.value === "") {
+            console.log("you deleted a number");
+            updateInputCells(inputElement, false);
+
+        } else {
+            inputElement.value = "";
+            console.log("invalid character")
         }
     }
 
@@ -52,6 +66,7 @@ function Table() {
                                                     className='cell' disabled={inputSatus}
                                                     type="text"
                                                     defaultValue={cellStatus[rowIndex][colIndex].value}
+                                                    maxLength={1}
                                                 />
                                             </td>
                                         )
