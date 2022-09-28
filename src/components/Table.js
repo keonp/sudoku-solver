@@ -15,16 +15,13 @@ function Table() {
         )
     );
 
-    const [inputSatus, setInputStatus] = useState(false);
+    // const [inputSatus, setInputStatus] = useState(false);
     const [inputCell, setInputCell] = useState("");
     const [conflicts, setConflicts] = useState([""]);
 
     function handleInput(e) {
-        // console.log(e.target);
         if (e.target.localName === 'input')  {
-
             setInputCell(e.target);
-            // console.log(e.target)
         }
     }
 
@@ -35,26 +32,16 @@ function Table() {
         if (value) {
             const results = cellValidation(updateCells, row, col, value);
             if (results) {
-                // these are numbers
                 const [_row, _col] = results;
                 console.log(row, col, _row, _col)
 
                 setConflicts([[+row, +col], [_row, _col]]);
-                // compare with .toString()
 
                 updateCells[_row][_col].state = 'conflict';
                 updateCells[row][col].state = 'conflict';
 
 
                 toggleDisable(updateCells, false, _row, _col, row, col);
-                // updateCells.forEach((element, rIndex) => {
-                //     element.forEach((cell, cIndex) => {
-                //         if ((_row === rIndex && _col === cIndex) || (+row === rIndex && +col === cIndex)) {
-                //         } else {
-                //             updateCells[rIndex][cIndex].disable = false;
-                //         }
-                //     })
-                // })
             }
         }
 
@@ -112,8 +99,6 @@ function Table() {
     function handleButtonPress(e) {
         if (inputCell) {
             const button = e.target;
-            // console.log(button);
-            // console.log(button.value);
 
             const cell = [...inputCell.id];
             console.log(cell)
@@ -127,8 +112,7 @@ function Table() {
             } else {
                 updateInputCells(inputCell, "", false);
                 inputCell.value = "";
-            }
-            // console.log(inputCell);  
+            } 
         }
     }
 
@@ -162,13 +146,6 @@ function Table() {
                             )
                         })
                     }
-
-
-                    {/* <tr>
-                        <td>
-                            <input className="cell"></input>
-                        </td>
-                    </tr> */}
                 </tbody>
                 <tfoot>
                     <tr>
