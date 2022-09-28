@@ -35,7 +35,9 @@ function Table() {
         if (value) {
             const results = cellValidation(updateCells, row, col, value);
             if (results) {
+                // these are numbers
                 const [_row, _col] = results;
+                console.log(row, col, _row, _col)
 
                 setConflicts([[+row, +col], [_row, _col]]);
                 // compare with .toString()
@@ -43,13 +45,16 @@ function Table() {
                 updateCells[_row][_col].state = 'conflict';
                 updateCells[row][col].state = 'conflict';
 
-                updateCells.forEach((element, rIndex) => {
-                    element.forEach((cell, cIndex) => {
-                        if (!(_row === +rIndex && _col === +cIndex) || !(row === rIndex && col === cIndex)) {
-                            updateCells[rIndex][cIndex].disable = false;
-                        }
-                    })
-                })
+
+                toggleDisable(updateCells, false, _row, _col, row, col);
+                // updateCells.forEach((element, rIndex) => {
+                //     element.forEach((cell, cIndex) => {
+                //         if ((_row === rIndex && _col === cIndex) || (+row === rIndex && +col === cIndex)) {
+                //         } else {
+                //             updateCells[rIndex][cIndex].disable = false;
+                //         }
+                //     })
+                // })
             }
         }
 
@@ -58,6 +63,7 @@ function Table() {
             updateCells[conrow1][concol1].state = false;
             updateCells[conrow2][concol2].state = false;
 
+            toggleDisable(updateCells, true, conrow1, concol1, conrow2, concol2);
             setConflicts([""]);
         }
 
@@ -67,6 +73,17 @@ function Table() {
         setCellStatus(updateCells);
         // revisit with regards to backspace
         setInputCell("");
+    }
+
+    function toggleDisable(array, status, row1, col1, row2, col2) {
+        array.forEach((element, rIndex) => {
+            element.forEach((cell, cIndex) => {
+                if ((row1 === rIndex && col1 === cIndex) || (+row2 === rIndex && +col2 === cIndex)) {
+                } else {
+                    array[rIndex][cIndex].disable = status;
+                }
+            })
+        })
     }
 
     function handleKeyPress(e) {
