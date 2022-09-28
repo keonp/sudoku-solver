@@ -15,12 +15,23 @@ function Table() {
         )
     );
 
+    const [numberButtons, setNumberButtons] = useState(
+        Array.from(Array(9).fill(null), (element, index) => {
+            return {
+                value: index,
+                disable: false
+            }
+        })
+    )
+
     // const [inputSatus, setInputStatus] = useState(false);
     const [inputCell, setInputCell] = useState("");
     const [conflicts, setConflicts] = useState([""]);
+    const [disableNumbers, setDisableNumbers] = useState(false);
 
     function handleInput(e) {
         if (e.target.localName === 'input')  {
+            // console.log(e.target)
             setInputCell(e.target);
         }
     }
@@ -39,7 +50,7 @@ function Table() {
 
                 updateCells[_row][_col].state = 'conflict';
                 updateCells[row][col].state = 'conflict';
-
+                setDisableNumbers(true);
 
                 toggleDisable(updateCells, false, _row, _col, row, col);
             }
@@ -49,6 +60,7 @@ function Table() {
             const [conrow1, concol1, conrow2, concol2] = [...conflicts[0], ...conflicts[1]];
             updateCells[conrow1][concol1].state = false;
             updateCells[conrow2][concol2].state = false;
+            setDisableNumbers(false);
 
             toggleDisable(updateCells, true, conrow1, concol1, conrow2, concol2);
             setConflicts([""]);
@@ -58,7 +70,7 @@ function Table() {
         updateCells[row][col].value = value;
 
         setCellStatus(updateCells);
-        // revisit with regards to backspace
+
         setInputCell("");
     }
 
@@ -75,10 +87,16 @@ function Table() {
 
     function handleKeyPress(e) {
         const inputElement = e.target;
+        const cell = [...inputElement.id];
+        console.log(inputElement)
 
         if (/^[1-9]+$/.test(+inputElement.value)) {
             console.log("you added a number");
             updateInputCells(inputElement, inputElement.value, true);
+
+        } else if (inputElement.value === "" && conflicts[0] && (CompareString(cell, conflicts[0]) || CompareString(cell, conflicts[1]))) {
+            console.log("you deleted a number");
+            updateInputCells(inputElement, inputElement.value, false, conflicts);
 
         } else if (inputElement.value === "") {
             console.log("you deleted a number");
@@ -101,12 +119,12 @@ function Table() {
             const button = e.target;
 
             const cell = [...inputCell.id];
-            console.log(cell)
+            // console.log(cell)
 
             if (button.value) {
                 updateInputCells(inputCell, button.value, true);
                 inputCell.value = button.value;
-            } else if (CompareString(cell, conflicts[0]) || CompareString(cell, conflicts[1])) {
+            } else if (conflicts[0] && (CompareString(cell, conflicts[0]) || CompareString(cell, conflicts[1]))) {
                 updateInputCells(inputCell, "", false, conflicts);
                 inputCell.value = "";
             } else {
@@ -150,10 +168,10 @@ function Table() {
                 <tfoot>
                     <tr>
                         {
-                            ['1', '2', '3', '4', '5', '6', '7', '8', '9'].map((number) => {
+                            numberButtons.map((number) => {
                                 return (
-                                    <td key={`button-${number}`}>
-                                        <button value={number} onClick={(e) => handleButtonPress(e)}>{number}</button>
+                                    <td key={`button-${number.value}`}>
+                                        <button value={number.value} disabled={number.disable} onClick={(e) => handleButtonPress(e)}>{number.value}</button>
                                     </td>
                                 )
                             })

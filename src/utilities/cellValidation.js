@@ -1,6 +1,6 @@
 function cellValidation(board, row, col, input) {
 
-    function RowChecker(board, row, input) {
+    function rowChecker(board, row, input) {
         for (let col = 0; col < 9; col ++) {
             if (board[row][col].value === input) {
                 // return [[row][col]];
@@ -10,7 +10,7 @@ function cellValidation(board, row, col, input) {
         return false;
     }
 
-    function ColChecker (board, col, input) {
+    function colChecker (board, col, input) {
         for (let row = 0; row < 9; row ++) {
             if (board[row][col].value === input) {
                 // return [[row][col]];
@@ -40,7 +40,7 @@ function cellValidation(board, row, col, input) {
         return false;
     }
 
-    return (RowChecker(board, row, input) || ColChecker (board, col, input) || subGridChecker(board, row, col, input) || false);
+    return (rowChecker(board, row, input) || colChecker(board, col, input) || subGridChecker(board, row, col, input));
     // RowChecker(board, row, input);
     // ColChecker (board, col, input);
     // subGridChecker(board, row, col, input);
