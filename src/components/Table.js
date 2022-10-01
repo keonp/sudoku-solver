@@ -6,27 +6,31 @@ function Table() {
     const [cellStatus, setCellStatus] = useState(
         Array.from(Array(9), () => Array(9).fill(null).map(() => {
                 return {
+                    // status if cell is empty or not
                     status: false, 
+                    // value of the cell
                     value: "",
+                    // state for conflict
                     state: false,
+                    // disable to disable cells
                     disable: true
                 }
             })
         )
     );
 
-    const [numberButtons, setNumberButtons] = useState(
-        Array.from(Array(9).fill(null), (element, index) => {
-            return {
-                value: index,
-                disable: false
-            }
-        })
-    )
+    // const [numberButtons, setNumberButtons] = useState(
+    //     Array.from(Array(9).fill(null), (element, index) => {
+    //         return {
+    //             value: index,
+    //             disable: false
+    //         }
+    //     })
+    // )
 
     // const [inputSatus, setInputStatus] = useState(false);
     const [inputCell, setInputCell] = useState("");
-    const [conflicts, setConflicts] = useState([""]);
+    const [conflicts, setConflicts] = useState([]);
     const [disableNumbers, setDisableNumbers] = useState(false);
 
     function handleInput(e) {
@@ -63,15 +67,15 @@ function Table() {
             setDisableNumbers(false);
 
             toggleDisable(updateCells, true, conrow1, concol1, conrow2, concol2);
-            setConflicts([""]);
+            setConflicts([]);
         }
 
         updateCells[row][col].status = status;
         updateCells[row][col].value = value;
 
         setCellStatus(updateCells);
-
-        setInputCell("");
+        inputCell.focus();
+        // setInputCell("");
     }
 
     function toggleDisable(array, status, row1, col1, row2, col2) {
@@ -118,10 +122,13 @@ function Table() {
         if (inputCell) {
             const button = e.target;
 
+
             const cell = [...inputCell.id];
             // console.log(cell)
 
-            if (button.value) {
+            if (button.value === inputCell.value) {
+                // do nothing
+            } else if (button.value) {
                 updateInputCells(inputCell, button.value, true);
                 inputCell.value = button.value;
             } else if (conflicts[0] && (CompareString(cell, conflicts[0]) || CompareString(cell, conflicts[1]))) {
@@ -134,10 +141,19 @@ function Table() {
         }
     }
 
+    function handleTab(e) {
+        setInputCell(e.target)
+    }
+    
+
     return (
         <section>
             <table>
-                <tbody onClick={(e) => handleInput(e)} onChange={(e) => handleKeyPress(e)}>
+                <tbody
+                    onClick={(e) => handleInput(e)}
+                    onChange={(e) => handleKeyPress(e)}
+                    onKeyUp={(e) => handleTab(e)}
+                >
                     {
                         cellStatus.map((row, rowIndex) => {
                             return (
@@ -168,10 +184,10 @@ function Table() {
                 <tfoot>
                     <tr>
                         {
-                            numberButtons.map((number) => {
+                            ['1', '2', '3', '4', '5', '6', '7', '8', '9'].map((number) => {
                                 return (
-                                    <td key={`button-${number.value}`}>
-                                        <button value={number.value} disabled={number.disable} onClick={(e) => handleButtonPress(e)}>{number.value}</button>
+                                    <td key={`button-${number}`}>
+                                        <button value={number} disabled={disableNumbers} onClick={(e) => handleButtonPress(e)}>{number}</button>
                                     </td>
                                 )
                             })
