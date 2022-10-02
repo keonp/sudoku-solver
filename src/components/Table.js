@@ -12,7 +12,7 @@ function Table() {
                     // value of the cell
                     value: "",
                     // state for conflict
-                    state: false,
+                    state: "",
                     // disable to disable cells
                     disable: true
                 }
@@ -63,8 +63,8 @@ function Table() {
 
         if (conflicts) {
             const [conrow1, concol1, conrow2, concol2] = [...conflicts[0], ...conflicts[1]];
-            updateCells[conrow1][concol1].state = false;
-            updateCells[conrow2][concol2].state = false;
+            updateCells[conrow1][concol1].state = "";
+            updateCells[conrow2][concol2].state = "";
             setDisableNumbers(false);
 
             toggleDisable(true, updateCells, true, conrow1, concol1, conrow2, concol2);
@@ -167,6 +167,7 @@ function Table() {
         const updateCells = [...cellStatus];
         disableUserInputs(updateCells);
         setCellStatus(solver(updateCells));
+        // setCellStatus(results);
     }
 
     return (
@@ -190,6 +191,7 @@ function Table() {
                                                 <input
                                                     id={`${rowIndex}${colIndex}`}
                                                     className={`cell ${cellStatus[rowIndex][colIndex].state}`}
+                                                    // className={`cell ${cellStatus[rowIndex][colIndex].state}`}
                                                     disabled={!cellStatus[rowIndex][colIndex].disable}
                                                     type="text"
                                                     defaultValue={cellStatus[rowIndex][colIndex].value}

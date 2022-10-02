@@ -10,7 +10,7 @@ function solver(board, row=0, col=0) {
 
             const number = numberList[i];
 
-            if (cellValidation(board, row, col, number)) {
+            if (!cellValidation(board, row, col, number)) {
                 board[row][col].value = number;
 
                 if (col < 8) {
@@ -18,6 +18,8 @@ function solver(board, row=0, col=0) {
                 } else if (col === 8 && row < 8) {
                     result = solver(board, row+1, 0);
                 } else {
+                    // board is solved here
+                    board[row][col].disable = false;
                     result = board;
                     return result;
                 }
@@ -25,6 +27,8 @@ function solver(board, row=0, col=0) {
                 if (result === false) {
                     board[row][col].value = "";
                 } else {
+                    // board is solved here
+                    board[row][col].disable = false;
                     return result;
                 }
             }
@@ -37,6 +41,8 @@ function solver(board, row=0, col=0) {
         } else if (col === 8 && row < 8) {
             result = solver(board, row+1, 0);
         } else {
+            // board is solved here
+            board[row][col].disable = false;
             result = board;
             return result;
         }
