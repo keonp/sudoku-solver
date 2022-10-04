@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { RiDeleteBack2Line } from 'react-icons/ri';
 import cellValidation from '../utilities/cellValidation';
 import solver from '../utilities/solver';
@@ -33,10 +33,28 @@ function Table() {
     const [inputCell, setInputCell] = useState("");
     const [conflicts, setConflicts] = useState([]);
     const [disableNumbers, setDisableNumbers] = useState(false);
+    // const [emptyString, setEmptyString] = useState("");
+    const [solved, setSolved] = useState(false);
+    const [testState, setTestState] = useState(false);
+
+    useEffect(() => {
+        // console.log("ran");
+        if (solved) {
+            // const updateCells = [...cellStatus];
+            // console.log(updateCells);
+            // disableUserInputs(updateCells);
+            // setCellStatus(solver(updateCells));
+            // const inputsList = document.querySelectorAll('input');
+            // console.log(inputsList);
+
+        }
+    }, [solved])
 
     function handleInput(e) {
         if (e.target.localName === 'input')  {
             // console.log(e.target)
+            console.log(e.target.value)
+            // setEmptyString(e.target.value);
             setInputCell(e.target);
         }
     }
@@ -47,6 +65,8 @@ function Table() {
 
         if (value) {
             const results = cellValidation(updateCells, row, col, value);
+
+            // If there is a conflict according to the rules of sudoku
             if (results) {
                 const [_row, _col] = results;
                 console.log(row, col, _row, _col)
@@ -58,7 +78,14 @@ function Table() {
                 setDisableNumbers(true);
 
                 toggleDisable(true, updateCells, false, _row, _col, row, col);
+
+            // if there are no conflicts
+            } else {
+                updateCells[row][col].state = userState();
             }
+        // If there is no value (a backspace)
+        } else {
+            updateCells[row][col].state = false;
         }
 
         if (conflicts) {
@@ -89,17 +116,23 @@ function Table() {
                     }
                 })
             })
-        } else {
-            array.forEach((element, row) => {
-                element.forEach((cell, col) => {
-                    if (cell.status) {
-                        console.log(cell.status);
-                        array[row][col].disable = status;
-                        array[row][col].state = 'userInputDisabled';
-                    }
-                })
-            })
         }
+        
+        // else {
+        //     array.forEach((element, row) => {
+        //         element.forEach((cell, col) => {
+        //             if (cell.status) {
+        //                 console.log(cell.status);
+        //                 array[row][col].disable = status;
+        //                 array[row][col].state = 'userInputDisabled';
+        //             }
+        //         })
+        //     })
+        // }
+    }
+
+    function userState() {
+        return testState;
     }
 
     function handleKeyPress(e) {
@@ -108,7 +141,7 @@ function Table() {
         console.log(inputElement)
 
         if (/^[1-9]+$/.test(+inputElement.value)) {
-            console.log("you added a number");
+            console.log("you added the number: " +inputElement.value);
             updateInputCells(inputElement, inputElement.value, true);
 
         } else if (inputElement.value === "" && conflicts[0] && (CompareString(cell, conflicts[0]) || CompareString(cell, conflicts[1]))) {
@@ -122,6 +155,7 @@ function Table() {
         } else {
             inputElement.value = "";
             console.log("invalid character")
+            updateInputCells(inputCell, inputElement.value, false);
         }
     }
 
@@ -132,6 +166,7 @@ function Table() {
     }
 
     function handleButtonPress(e) {
+
         if (inputCell) {
             const button = e.target;
 
@@ -139,6 +174,7 @@ function Table() {
             const cell = [...inputCell.id];
             // console.log(cell)
 
+            // console.log(document.getElementById(`${cell[0]}${cell[1]}`))
             if (button.value === inputCell.value) {
                 inputCell.focus();
             } else if (button.value) {
@@ -165,10 +201,18 @@ function Table() {
     
     function solvePuzzle() {
         const updateCells = [...cellStatus];
-        disableUserInputs(updateCells);
+        console.log(updateCells);
+        // disableUserInputs(updateCells);
+        setTestState('userInputDisabled');
         setCellStatus(solver(updateCells));
+        setSolved(true);
         // setCellStatus(results);
     }
+
+    function handleValue() {
+        // do nothing function to handle value overwriting defaultValue issue
+    }
+
 
     return (
         <section>
@@ -191,10 +235,10 @@ function Table() {
                                                 <input
                                                     id={`${rowIndex}${colIndex}`}
                                                     className={`cell ${cellStatus[rowIndex][colIndex].state}`}
-                                                    // className={`cell ${cellStatus[rowIndex][colIndex].state}`}
                                                     disabled={!cellStatus[rowIndex][colIndex].disable}
                                                     type="text"
-                                                    defaultValue={cellStatus[rowIndex][colIndex].value}
+                                                    onChange={() => handleValue()}
+                                                    value={cellStatus[rowIndex][colIndex].value}
                                                     maxLength={1}
                                                 />
                                             </td>
