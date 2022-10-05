@@ -47,8 +47,14 @@ function Table() {
             // const inputsList = document.querySelectorAll('input');
             // console.log(inputsList);
 
+            const updateCells = [...cellStatus];
+            console.log(updateCells);
+            // disableUserInputs(updateCells);
+            setTestState('userInputDisabled');
+            setCellStatus(solver(updateCells));
+
         }
-    }, [solved])
+    }, [testState])
 
     function handleInput(e) {
         if (e.target.localName === 'input')  {
@@ -81,17 +87,29 @@ function Table() {
 
             // if there are no conflicts
             } else {
-                updateCells[row][col].state = userState();
+                updateCells[row][col].state = testState;
             }
         // If there is no value (a backspace)
         } else {
-            updateCells[row][col].state = false;
+            updateCells[row][col].state = "";
         }
 
         if (conflicts) {
             const [conrow1, concol1, conrow2, concol2] = [...conflicts[0], ...conflicts[1]];
-            updateCells[conrow1][concol1].state = "";
-            updateCells[conrow2][concol2].state = "";
+
+            if (updateCells[conrow1][concol1].state === updateCells[row][col].state) {
+                updateCells[conrow1][concol1].state = "";
+            } else {
+                updateCells[conrow1][concol1].state = testState;
+            }
+
+            if (updateCells[conrow2][concol2].state === updateCells[row][col].state) {
+                updateCells[conrow2][concol2].state = "";
+            } else {
+                updateCells[conrow2][concol2].state = testState;
+            }
+            // updateCells[conrow1][concol1].state = "";
+            // updateCells[conrow2][concol2].state = "";
             setDisableNumbers(false);
 
             toggleDisable(true, updateCells, true, conrow1, concol1, conrow2, concol2);
@@ -131,9 +149,9 @@ function Table() {
         // }
     }
 
-    function userState() {
-        return testState;
-    }
+    // function userState() {
+    //     return testState;
+    // }
 
     function handleKeyPress(e) {
         const inputElement = e.target;
@@ -155,7 +173,7 @@ function Table() {
         } else {
             inputElement.value = "";
             console.log("invalid character")
-            updateInputCells(inputCell, inputElement.value, false);
+            // updateInputCells(inputCell, inputElement.value, false);
         }
     }
 
@@ -205,7 +223,7 @@ function Table() {
         // disableUserInputs(updateCells);
         setTestState('userInputDisabled');
         setCellStatus(solver(updateCells));
-        setSolved(true);
+        // setSolved(true);
         // setCellStatus(results);
     }
 
@@ -234,7 +252,14 @@ function Table() {
                                             <td key={`${rowIndex}${colIndex}`}>
                                                 <input
                                                     id={`${rowIndex}${colIndex}`}
-                                                    className={`cell ${cellStatus[rowIndex][colIndex].state}`}
+                                                    // ${cellStatus[rowIndex][colIndex].state}
+                                                    // className={`cell`}
+                                                    // className={`cell ${(testState && cellStatus[rowIndex][colIndex].state !== "") ? testState : cellStatus[rowIndex][colIndex].state}`}
+                                                    className={`cell
+                                                        ${(cellStatus[rowIndex][colIndex].state === "conflict") ? cellStatus[rowIndex][colIndex].state
+                                                            : (testState && cellStatus[rowIndex][colIndex].state !== "") ? testState
+                                                            : cellStatus[rowIndex][colIndex].state}`
+                                                    }
                                                     disabled={!cellStatus[rowIndex][colIndex].disable}
                                                     type="text"
                                                     onChange={() => handleValue()}
