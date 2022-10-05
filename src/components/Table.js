@@ -37,24 +37,24 @@ function Table() {
     const [solved, setSolved] = useState(false);
     const [testState, setTestState] = useState(false);
 
-    useEffect(() => {
-        // console.log("ran");
-        if (solved) {
-            // const updateCells = [...cellStatus];
-            // console.log(updateCells);
-            // disableUserInputs(updateCells);
-            // setCellStatus(solver(updateCells));
-            // const inputsList = document.querySelectorAll('input');
-            // console.log(inputsList);
+    // useEffect(() => {
+    //     // console.log("ran");
+    //     if (solved) {
+    //         // const updateCells = [...cellStatus];
+    //         // console.log(updateCells);
+    //         // disableUserInputs(updateCells);
+    //         // setCellStatus(solver(updateCells));
+    //         // const inputsList = document.querySelectorAll('input');
+    //         // console.log(inputsList);
 
-            const updateCells = [...cellStatus];
-            console.log(updateCells);
-            // disableUserInputs(updateCells);
-            setTestState('userInputDisabled');
-            setCellStatus(solver(updateCells));
+    //         const updateCells = [...cellStatus];
+    //         console.log(updateCells);
+    //         // disableUserInputs(updateCells);
+    //         setTestState('userInputDisabled');
+    //         setCellStatus(solver(updateCells));
 
-        }
-    }, [testState])
+    //     }
+    // }, [testState])
 
     function handleInput(e) {
         if (e.target.localName === 'input')  {
@@ -136,17 +136,17 @@ function Table() {
             })
         }
         
-        // else {
-        //     array.forEach((element, row) => {
-        //         element.forEach((cell, col) => {
-        //             if (cell.status) {
-        //                 console.log(cell.status);
-        //                 array[row][col].disable = status;
-        //                 array[row][col].state = 'userInputDisabled';
-        //             }
-        //         })
-        //     })
-        // }
+        else {
+            array.forEach((element, row) => {
+                element.forEach((cell, col) => {
+                    if (cell.status) {
+                        console.log(cell.status);
+                        array[row][col].disable = status;
+                        array[row][col].state = 'userInputDisabled';
+                    }
+                })
+            })
+        }
     }
 
     // function userState() {
@@ -220,7 +220,7 @@ function Table() {
     function solvePuzzle() {
         const updateCells = [...cellStatus];
         console.log(updateCells);
-        // disableUserInputs(updateCells);
+        disableUserInputs(updateCells);
         setTestState('userInputDisabled');
         setCellStatus(solver(updateCells));
         // setSolved(true);
