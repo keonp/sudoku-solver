@@ -3,20 +3,41 @@ table {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-}
+    border-collapse: collapse;
 
-.cell {
-    height: 35px;
-    width: 35px;
-    text-align: center;
-}
+    tbody {
+        border: 3px solid black;
+        // border-collapse: collapse;
+    }
 
-.conflict {
-    background-color: red;
-}
-
-.userInputDisabled {
-    color: white;
-    background: black;
-    border: 1px solid black;
+    .bottomBorder {
+        border-bottom: 2px solid black;
+    }
+    .sideBorder  {
+        border-right: 2px solid black;
+    }
+    
+    input {
+        border-radius: 0;
+        &:focus {
+            outline: none;
+            border: 2px solid blue;
+        }
+    }
+    
+    .cell {
+        height: 40px;
+        width: 40px;
+        text-align: center;
+    }
+    
+    .conflict {
+        background-color: red;
+    }
+    
+    .userInputDisabled {
+        color: white;
+        background: black;
+        border: 1px solid black;
+    }
 }

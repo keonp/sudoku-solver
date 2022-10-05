@@ -237,19 +237,33 @@ table {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  border-collapse: collapse;
 }
-
-.cell {
-  height: 35px;
-  width: 35px;
+table tbody {
+  border: 3px solid black;
+}
+table .bottomBorder {
+  border-bottom: 2px solid black;
+}
+table .sideBorder {
+  border-right: 2px solid black;
+}
+table input {
+  border-radius: 0;
+}
+table input:focus {
+  outline: none;
+  border: 2px solid blue;
+}
+table .cell {
+  height: 40px;
+  width: 40px;
   text-align: center;
 }
-
-.conflict {
+table .conflict {
   background-color: red;
 }
-
-.userInputDisabled {
+table .userInputDisabled {
   color: white;
   background: black;
   border: 1px solid black;

@@ -33,9 +33,9 @@ function Table() {
     const [inputCell, setInputCell] = useState("");
     const [conflicts, setConflicts] = useState([]);
     const [disableNumbers, setDisableNumbers] = useState(false);
-    // const [emptyString, setEmptyString] = useState("");
     const [solved, setSolved] = useState(false);
     const [testState, setTestState] = useState(false);
+    const [disableAll, setdisableAll] = useState(false);
 
     // useEffect(() => {
     //     // console.log("ran");
@@ -136,17 +136,17 @@ function Table() {
             })
         }
         
-        else {
-            array.forEach((element, row) => {
-                element.forEach((cell, col) => {
-                    if (cell.status) {
-                        console.log(cell.status);
-                        array[row][col].disable = status;
-                        array[row][col].state = 'userInputDisabled';
-                    }
-                })
-            })
-        }
+        // else {
+        //     array.forEach((element, row) => {
+        //         element.forEach((cell, col) => {
+        //             if (cell.status) {
+        //                 console.log(cell.status);
+        //                 array[row][col].disable = status;
+        //                 array[row][col].state = 'userInputDisabled';
+        //             }
+        //         })
+        //     })
+        // }
     }
 
     // function userState() {
@@ -217,11 +217,13 @@ function Table() {
         setCellStatus(updateCells);
     }
     
+    // solves the puzzle
     function solvePuzzle() {
         const updateCells = [...cellStatus];
         console.log(updateCells);
-        disableUserInputs(updateCells);
+        // disableUserInputs(updateCells);
         setTestState('userInputDisabled');
+        setdisableAll(!disableAll);
         setCellStatus(solver(updateCells));
         // setSolved(true);
         // setCellStatus(results);
@@ -249,7 +251,13 @@ function Table() {
                                     row.map((column, colIndex) => {
                                         // Return a cell for each column in the row
                                         return (
-                                            <td key={`${rowIndex}${colIndex}`}>
+                                            <td
+                                                key={`${rowIndex}${colIndex}`}
+                                                className={`
+                                                    ${(colIndex === 2 || colIndex === 5) ? `sideBorder` : null}
+                                                    ${(rowIndex === 2 || rowIndex === 5) ? `bottomBorder` : null}
+                                                `}
+                                            >
                                                 <input
                                                     id={`${rowIndex}${colIndex}`}
                                                     // ${cellStatus[rowIndex][colIndex].state}
@@ -260,7 +268,7 @@ function Table() {
                                                             : (testState && cellStatus[rowIndex][colIndex].state !== "") ? testState
                                                             : cellStatus[rowIndex][colIndex].state}`
                                                     }
-                                                    disabled={!cellStatus[rowIndex][colIndex].disable}
+                                                    disabled={disableAll || !cellStatus[rowIndex][colIndex].disable}
                                                     type="text"
                                                     onChange={() => handleValue()}
                                                     value={cellStatus[rowIndex][colIndex].value}

@@ -19,7 +19,6 @@ function solver(board, row=0, col=0) {
                     result = solver(board, row+1, 0);
                 } else {
                     // board is solved here
-                    board[row][col].disable = false;
                     result = board;
                     return result;
                 }
@@ -28,7 +27,6 @@ function solver(board, row=0, col=0) {
                     board[row][col].value = "";
                 } else {
                     // board is solved here
-                    board[row][col].disable = false;
                     return result;
                 }
             }
@@ -42,7 +40,6 @@ function solver(board, row=0, col=0) {
             result = solver(board, row+1, 0);
         } else {
             // board is solved here
-            board[row][col].disable = false;
             result = board;
             return result;
         }
