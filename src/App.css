@@ -239,6 +239,14 @@ table {
   align-items: center;
   border-collapse: collapse;
 }
+table input {
+  border-radius: 0;
+  border: 1px solid #E3E3E3;
+}
+table input:focus {
+  outline: none;
+  border: 2px solid blue;
+}
 table tbody {
   border: 3px solid black;
 }
@@ -248,12 +256,8 @@ table .bottomBorder {
 table .sideBorder {
   border-right: 2px solid black;
 }
-table input {
-  border-radius: 0;
-}
-table input:focus {
-  outline: none;
-  border: 2px solid blue;
+table .tileColor {
+  background-color: skyblue;
 }
 table .cell {
   height: 40px;

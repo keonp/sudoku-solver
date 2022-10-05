@@ -223,7 +223,7 @@ function Table() {
         console.log(updateCells);
         // disableUserInputs(updateCells);
         setTestState('userInputDisabled');
-        setdisableAll(!disableAll);
+        setdisableAll(true);
         setCellStatus(solver(updateCells));
         // setSolved(true);
         // setCellStatus(results);
