@@ -1,6 +1,7 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { RiDeleteBack2Line } from 'react-icons/ri';
 import cellValidation from '../utilities/cellValidation';
+import solver from '../utilities/solver';
 
 function Table() {
     const [cellStatus, setCellStatus] = useState(
@@ -11,7 +12,7 @@ function Table() {
                     // value of the cell
                     value: "",
                     // state for conflict
-                    state: false,
+                    state: "",
                     // disable to disable cells
                     disable: true
                 }
@@ -32,10 +33,34 @@ function Table() {
     const [inputCell, setInputCell] = useState("");
     const [conflicts, setConflicts] = useState([]);
     const [disableNumbers, setDisableNumbers] = useState(false);
+    const [solved, setSolved] = useState(false);
+    const [testState, setTestState] = useState(false);
+    const [disableAll, setdisableAll] = useState(false);
+
+    // useEffect(() => {
+    //     // console.log("ran");
+    //     if (solved) {
+    //         // const updateCells = [...cellStatus];
+    //         // console.log(updateCells);
+    //         // disableUserInputs(updateCells);
+    //         // setCellStatus(solver(updateCells));
+    //         // const inputsList = document.querySelectorAll('input');
+    //         // console.log(inputsList);
+
+    //         const updateCells = [...cellStatus];
+    //         console.log(updateCells);
+    //         // disableUserInputs(updateCells);
+    //         setTestState('userInputDisabled');
+    //         setCellStatus(solver(updateCells));
+
+    //     }
+    // }, [testState])
 
     function handleInput(e) {
         if (e.target.localName === 'input')  {
             // console.log(e.target)
+            console.log(e.target.value)
+            // setEmptyString(e.target.value);
             setInputCell(e.target);
         }
     }
@@ -46,6 +71,8 @@ function Table() {
 
         if (value) {
             const results = cellValidation(updateCells, row, col, value);
+
+            // If there is a conflict according to the rules of sudoku
             if (results) {
                 const [_row, _col] = results;
                 console.log(row, col, _row, _col)
@@ -56,17 +83,36 @@ function Table() {
                 updateCells[row][col].state = 'conflict';
                 setDisableNumbers(true);
 
-                toggleDisable(updateCells, false, _row, _col, row, col);
+                toggleDisable(true, updateCells, false, _row, _col, row, col);
+
+            // if there are no conflicts
+            } else {
+                updateCells[row][col].state = testState;
             }
+        // If there is no value (a backspace)
+        } else {
+            updateCells[row][col].state = "";
         }
 
         if (conflicts) {
             const [conrow1, concol1, conrow2, concol2] = [...conflicts[0], ...conflicts[1]];
-            updateCells[conrow1][concol1].state = false;
-            updateCells[conrow2][concol2].state = false;
+
+            if (updateCells[conrow1][concol1].state === updateCells[row][col].state) {
+                updateCells[conrow1][concol1].state = "";
+            } else {
+                updateCells[conrow1][concol1].state = testState;
+            }
+
+            if (updateCells[conrow2][concol2].state === updateCells[row][col].state) {
+                updateCells[conrow2][concol2].state = "";
+            } else {
+                updateCells[conrow2][concol2].state = testState;
+            }
+            // updateCells[conrow1][concol1].state = "";
+            // updateCells[conrow2][concol2].state = "";
             setDisableNumbers(false);
 
-            toggleDisable(updateCells, true, conrow1, concol1, conrow2, concol2);
+            toggleDisable(true, updateCells, true, conrow1, concol1, conrow2, concol2);
             setConflicts([]);
         }
 
@@ -78,16 +124,34 @@ function Table() {
         // setInputCell("");
     }
 
-    function toggleDisable(array, status, row1, col1, row2, col2) {
-        array.forEach((element, rIndex) => {
-            element.forEach((cell, cIndex) => {
-                if ((row1 === rIndex && col1 === cIndex) || (+row2 === rIndex && +col2 === cIndex)) {
-                } else {
-                    array[rIndex][cIndex].disable = status;
-                }
+    function toggleDisable(forConflicts, array, status, row1, col1, row2, col2) {
+        if (forConflicts) {
+            array.forEach((element, rIndex) => {
+                element.forEach((cell, cIndex) => {
+                    if ((row1 === rIndex && col1 === cIndex) || (+row2 === rIndex && +col2 === cIndex)) {
+                    } else {
+                        array[rIndex][cIndex].disable = status;
+                    }
+                })
             })
-        })
+        }
+        
+        // else {
+        //     array.forEach((element, row) => {
+        //         element.forEach((cell, col) => {
+        //             if (cell.status) {
+        //                 console.log(cell.status);
+        //                 array[row][col].disable = status;
+        //                 array[row][col].state = 'userInputDisabled';
+        //             }
+        //         })
+        //     })
+        // }
     }
+
+    // function userState() {
+    //     return testState;
+    // }
 
     function handleKeyPress(e) {
         const inputElement = e.target;
@@ -95,7 +159,7 @@ function Table() {
         console.log(inputElement)
 
         if (/^[1-9]+$/.test(+inputElement.value)) {
-            console.log("you added a number");
+            console.log("you added the number: " +inputElement.value);
             updateInputCells(inputElement, inputElement.value, true);
 
         } else if (inputElement.value === "" && conflicts[0] && (CompareString(cell, conflicts[0]) || CompareString(cell, conflicts[1]))) {
@@ -109,6 +173,7 @@ function Table() {
         } else {
             inputElement.value = "";
             console.log("invalid character")
+            // updateInputCells(inputCell, inputElement.value, false);
         }
     }
 
@@ -119,6 +184,7 @@ function Table() {
     }
 
     function handleButtonPress(e) {
+
         if (inputCell) {
             const button = e.target;
 
@@ -126,8 +192,9 @@ function Table() {
             const cell = [...inputCell.id];
             // console.log(cell)
 
+            // console.log(document.getElementById(`${cell[0]}${cell[1]}`))
             if (button.value === inputCell.value) {
-                // do nothing
+                inputCell.focus();
             } else if (button.value) {
                 updateInputCells(inputCell, button.value, true);
                 inputCell.value = button.value;
@@ -144,7 +211,28 @@ function Table() {
     function handleTab(e) {
         setInputCell(e.target)
     }
+
+    function disableUserInputs(updateCells) {
+        toggleDisable(false, updateCells, false);
+        setCellStatus(updateCells);
+    }
     
+    // solves the puzzle
+    function solvePuzzle() {
+        const updateCells = [...cellStatus];
+        console.log(updateCells);
+        // disableUserInputs(updateCells);
+        setTestState('userInputDisabled');
+        setdisableAll(!disableAll);
+        setCellStatus(solver(updateCells));
+        // setSolved(true);
+        // setCellStatus(results);
+    }
+
+    function handleValue() {
+        // do nothing function to handle value overwriting defaultValue issue
+    }
+
 
     return (
         <section>
@@ -163,13 +251,27 @@ function Table() {
                                     row.map((column, colIndex) => {
                                         // Return a cell for each column in the row
                                         return (
-                                            <td key={`${rowIndex}${colIndex}`}>
+                                            <td
+                                                key={`${rowIndex}${colIndex}`}
+                                                className={`
+                                                    ${(colIndex === 2 || colIndex === 5) ? `sideBorder` : null}
+                                                    ${(rowIndex === 2 || rowIndex === 5) ? `bottomBorder` : null}
+                                                `}
+                                            >
                                                 <input
                                                     id={`${rowIndex}${colIndex}`}
-                                                    className={`cell ${cellStatus[rowIndex][colIndex].state}`}
-                                                    disabled={!cellStatus[rowIndex][colIndex].disable}
+                                                    // ${cellStatus[rowIndex][colIndex].state}
+                                                    // className={`cell`}
+                                                    // className={`cell ${(testState && cellStatus[rowIndex][colIndex].state !== "") ? testState : cellStatus[rowIndex][colIndex].state}`}
+                                                    className={`cell
+                                                        ${(cellStatus[rowIndex][colIndex].state === "conflict") ? cellStatus[rowIndex][colIndex].state
+                                                            : (testState && cellStatus[rowIndex][colIndex].state !== "") ? testState
+                                                            : cellStatus[rowIndex][colIndex].state}`
+                                                    }
+                                                    disabled={disableAll || !cellStatus[rowIndex][colIndex].disable}
                                                     type="text"
-                                                    defaultValue={cellStatus[rowIndex][colIndex].value}
+                                                    onChange={() => handleValue()}
+                                                    value={cellStatus[rowIndex][colIndex].value}
                                                     maxLength={1}
                                                 />
                                             </td>
@@ -200,6 +302,9 @@ function Table() {
                     </tr>
                 </tfoot>
             </table>
+            <div className='buttonSelections'>
+                <button onClick={solvePuzzle}>Solve Puzzle!</button>
+            </div>
         </section>
     )
 }

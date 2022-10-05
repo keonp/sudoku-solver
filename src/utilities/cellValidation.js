@@ -41,9 +41,6 @@ function cellValidation(board, row, col, input) {
     }
 
     return (rowChecker(board, row, input) || colChecker(board, col, input) || subGridChecker(board, row, col, input));
-    // RowChecker(board, row, input);
-    // ColChecker (board, col, input);
-    // subGridChecker(board, row, col, input);
 }
 
 export default cellValidation;
