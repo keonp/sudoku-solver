@@ -253,17 +253,14 @@ function Table() {
                                         return (
                                             <td
                                                 key={`${rowIndex}${colIndex}`}
-                                                className={`
-                                                    ${(colIndex === 2 || colIndex === 5) ? `sideBorder` : null}
-                                                    ${(rowIndex === 2 || rowIndex === 5) ? `bottomBorder` : null}
-                                                `}
+                                                className={`${(colIndex === 2 || colIndex === 5) ? `sideBorder` : null} ${(rowIndex === 2 || rowIndex === 5) ? `bottomBorder` : null}`}
                                             >
                                                 <input
                                                     id={`${rowIndex}${colIndex}`}
                                                     // ${cellStatus[rowIndex][colIndex].state}
                                                     // className={`cell`}
                                                     // className={`cell ${(testState && cellStatus[rowIndex][colIndex].state !== "") ? testState : cellStatus[rowIndex][colIndex].state}`}
-                                                    className={`cell
+                                                    className={`cell r${rowIndex}c${colIndex}
                                                         ${(cellStatus[rowIndex][colIndex].state === "conflict") ? cellStatus[rowIndex][colIndex].state
                                                             : (testState && cellStatus[rowIndex][colIndex].state !== "") ? testState
                                                             : cellStatus[rowIndex][colIndex].state}`

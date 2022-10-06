@@ -8,16 +8,24 @@ table {
 
     input {
         border-radius: 0;
-        border: 1px solid #E3E3E3;
+        // border: 1px solid #E3E3E3;
+        border: 1px solid darkgray;
         &:focus {
             outline: none;
             border: 2px solid blue;
+            // border: 2px solid crimson;
         }
     }
 
+
+    @include tileRange(0, 2, 0, 2);
+    @include tileRange(0, 2, 6, 8);
+    @include tileRange(3, 5, 3, 5);
+    @include tileRange(6, 8, 0, 2);
+    @include tileRange(6, 8, 6, 8);
+
     tbody {
         border: 3px solid black;
-        // border-collapse: collapse;
     }
 
     .bottomBorder {
