@@ -19,11 +19,12 @@
         // border-radius: 0;
         // border: 1px solid #E3E3E3;
         border: 1px solid darkgray;
+        user-select: none;
         &:focus {
             outline: none;
             border: 2px solid blue;
             // border: 2px solid crimson;
-        }
+        }        
     }
 
     @include tileRange(0, 2, 0, 2);
@@ -58,24 +59,17 @@
     }
     
     .userInputDisabled {
-        color: white;
+        color: white !important;
         background: black;
-        // border: 1px solid black;
     }
 
     .inputButtons {
-        height: 30px;
-        width: 30px;
-    }
-
-    .backspaceButton {
+        height: 40px;
+        width: 40px;
         display: flex;
         justify-content: center;
         align-items: center;
-
-        svg {
-            font-size: 2.22rem;
-        }
+        transition: 0.3s;
     }
 
     h1,
@@ -86,7 +80,6 @@
     .inputButtonsRow {
         width: $tFooterWidth;
         display: flex;
-        justify-content: space-between;        
-
+        justify-content: space-between;
     }
 }

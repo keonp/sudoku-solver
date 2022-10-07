@@ -2,7 +2,6 @@
     @for $row from $rowStart through $rowEnd {
         @for $col from $colStart through $colEnd {
             .r#{$row}c#{$col} {
-                // background-color: skyblue;
                 background-color: peachpuff;
             }
         }

@@ -4,7 +4,8 @@ input,
 table,
 tbody,
 tr,
-td {
+td,
+button {
     padding: 0;
     margin: 0;
 }
@@ -20,6 +21,34 @@ html {
 }
 
 button {
-    // border-radius: 0;
-    
+    border: 2px solid black;
+    border-radius: 5px;
+    background-color: $lightTeal;
+    color: black;
+
+    &:hover,
+    &:focus {
+        background-color: teal;
+    }
+
+    &:focus {
+        outline: none;
+    }
+
+    &[disabled] {
+        background-color: $disabledGrey;
+        border-color: darkgrey;
+        color: $disabledLightGrey;
+    }
+}
+
+.buttonSelections {
+    display: flex;
+    flex-direction: column;
+    button {
+        text-transform: uppercase;
+        margin: 10px 0;
+        padding: 10px 20px;
+        font-weight: 700;
+    }
 }

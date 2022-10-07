@@ -224,6 +224,7 @@ function Table() {
         // disableUserInputs(updateCells);
         setTestState('userInputDisabled');
         setdisableAll(true);
+        // setDisableNumbers(true)
         setCellStatus(solver(updateCells));
         // setSolved(true);
         // setCellStatus(results);
@@ -288,13 +289,13 @@ function Table() {
                                 ['1', '2', '3', '4', '5', '6', '7', '8', '9'].map((number) => {
                                     return (
                                         <td key={`button-${number}`}>
-                                            <button className='inputButtons' value={number} disabled={disableNumbers} onClick={(e) => handleButtonPress(e)}>{number}</button>
+                                            <button className='inputButtons' value={number} disabled={disableNumbers || disableAll} onClick={(e) => handleButtonPress(e)}>{number}</button>
                                         </td>
                                     )
                                 })
                             }
                             <td>
-                                <button className='inputButtons backspaceButton' value="" onClick={(e) => handleButtonPress(e)}>
+                                <button className='inputButtons backspaceButton' value="" disabled={disableAll} onClick={(e) => handleButtonPress(e)}>
                                     <RiDeleteBack2Line />
                                 </button>
                             </td>
@@ -302,7 +303,8 @@ function Table() {
                     </tfoot>
                 </table>
                 <div className='buttonSelections'>
-                    <button onClick={solvePuzzle}>Solve Puzzle!</button>
+                    <button onClick={solvePuzzle}>Solve Puzzle</button>
+                    <button>Restart</button>
                 </div>
             </div>
         </section>
