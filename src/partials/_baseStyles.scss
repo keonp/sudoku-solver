@@ -4,7 +4,41 @@ input,
 table,
 tbody,
 tr,
-td {
+td,
+button {
     padding: 0;
     margin: 0;
+}
+
+html {
+    font-size: 125%;
+}
+
+.wrapper {
+    max-width: 1280px;
+    width: 90%;
+    margin: 0 auto;
+}
+
+button {
+    border: 2px solid black;
+    border-radius: 5px;
+    background-color: $lightTeal;
+    color: black;
+    transition: 0.3s;
+
+    &:hover,
+    &:focus {
+        background-color: teal;
+    }
+
+    &:focus {
+        outline: none;
+    }
+
+    &[disabled] {
+        background-color: $disabledGrey;
+        border-color: darkgrey;
+        color: $disabledLightGrey;
+    }
 }

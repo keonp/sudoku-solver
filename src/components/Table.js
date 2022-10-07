@@ -223,7 +223,8 @@ function Table() {
         console.log(updateCells);
         // disableUserInputs(updateCells);
         setTestState('userInputDisabled');
-        setdisableAll(!disableAll);
+        setdisableAll(true);
+        // setDisableNumbers(true)
         setCellStatus(solver(updateCells));
         // setSolved(true);
         // setCellStatus(results);
@@ -235,75 +236,76 @@ function Table() {
 
 
     return (
-        <section>
-            <table>
-                <tbody
-                    onClick={(e) => handleInput(e)}
-                    onChange={(e) => handleKeyPress(e)}
-                    onKeyUp={(e) => handleTab(e)}
-                >
-                    {
-                        cellStatus.map((row, rowIndex) => {
-                            return (
-                                // Return each row
-                                <tr key={`row${rowIndex}`}>
-                                {
-                                    row.map((column, colIndex) => {
-                                        // Return a cell for each column in the row
-                                        return (
-                                            <td
-                                                key={`${rowIndex}${colIndex}`}
-                                                className={`
-                                                    ${(colIndex === 2 || colIndex === 5) ? `sideBorder` : null}
-                                                    ${(rowIndex === 2 || rowIndex === 5) ? `bottomBorder` : null}
-                                                `}
-                                            >
-                                                <input
-                                                    id={`${rowIndex}${colIndex}`}
-                                                    // ${cellStatus[rowIndex][colIndex].state}
-                                                    // className={`cell`}
-                                                    // className={`cell ${(testState && cellStatus[rowIndex][colIndex].state !== "") ? testState : cellStatus[rowIndex][colIndex].state}`}
-                                                    className={`cell
-                                                        ${(cellStatus[rowIndex][colIndex].state === "conflict") ? cellStatus[rowIndex][colIndex].state
-                                                            : (testState && cellStatus[rowIndex][colIndex].state !== "") ? testState
-                                                            : cellStatus[rowIndex][colIndex].state}`
-                                                    }
-                                                    disabled={disableAll || !cellStatus[rowIndex][colIndex].disable}
-                                                    type="text"
-                                                    onChange={() => handleValue()}
-                                                    value={cellStatus[rowIndex][colIndex].value}
-                                                    maxLength={1}
-                                                />
-                                            </td>
-                                        )
-                                    })
-                                }
-                                </tr>
-                            )
-                        })
-                    }
-                </tbody>
-                <tfoot>
-                    <tr>
+        <section className='sudokuDisplay'>
+            <div className='wrapper'>
+                <h1>Sudoku Solver</h1>
+                <table>
+                    <tbody
+                        onClick={(e) => handleInput(e)}
+                        onChange={(e) => handleKeyPress(e)}
+                        onKeyUp={(e) => handleTab(e)}
+                    >
                         {
-                            ['1', '2', '3', '4', '5', '6', '7', '8', '9'].map((number) => {
+                            cellStatus.map((row, rowIndex) => {
                                 return (
-                                    <td key={`button-${number}`}>
-                                        <button value={number} disabled={disableNumbers} onClick={(e) => handleButtonPress(e)}>{number}</button>
-                                    </td>
+                                    // Return each row
+                                    <tr key={`row${rowIndex}`}>
+                                    {
+                                        row.map((column, colIndex) => {
+                                            // Return a cell for each column in the row
+                                            return (
+                                                <td
+                                                    key={`${rowIndex}${colIndex}`}
+                                                    className={`${(colIndex === 2 || colIndex === 5) ? `sideBorder` : null} ${(rowIndex === 2 || rowIndex === 5) ? `bottomBorder` : null}`}
+                                                >
+                                                    <input
+                                                        id={`${rowIndex}${colIndex}`}
+                                                        // ${cellStatus[rowIndex][colIndex].state}
+                                                        // className={`cell`}
+                                                        // className={`cell ${(testState && cellStatus[rowIndex][colIndex].state !== "") ? testState : cellStatus[rowIndex][colIndex].state}`}
+                                                        className={`cell r${rowIndex}c${colIndex}
+                                                            ${(cellStatus[rowIndex][colIndex].state === "conflict") ? cellStatus[rowIndex][colIndex].state
+                                                                : (testState && cellStatus[rowIndex][colIndex].state !== "") ? testState
+                                                                : cellStatus[rowIndex][colIndex].state}`
+                                                        }
+                                                        disabled={disableAll || !cellStatus[rowIndex][colIndex].disable}
+                                                        type="text"
+                                                        onChange={() => handleValue()}
+                                                        value={cellStatus[rowIndex][colIndex].value}
+                                                        maxLength={1}
+                                                    />
+                                                </td>
+                                            )
+                                        })
+                                    }
+                                    </tr>
                                 )
                             })
                         }
-                        <td>
-                            <button value="" onClick={(e) => handleButtonPress(e)}>
-                                <RiDeleteBack2Line />
-                            </button>
-                        </td>
-                    </tr>
-                </tfoot>
-            </table>
-            <div className='buttonSelections'>
-                <button onClick={solvePuzzle}>Solve Puzzle!</button>
+                    </tbody>
+                    <tfoot>
+                        <tr className='inputButtonsRow'>
+                            {
+                                ['1', '2', '3', '4', '5', '6', '7', '8', '9'].map((number) => {
+                                    return (
+                                        <td className='numberContainer' key={`button-${number}`}>
+                                            <button className='inputButtons' value={number} disabled={disableNumbers || disableAll} onClick={(e) => handleButtonPress(e)}>{number}</button>
+                                        </td>
+                                    )
+                                })
+                            }
+                            <td className='numberContainer'> 
+                                <button className='inputButtons backspaceButton' value="" disabled={disableAll} onClick={(e) => handleButtonPress(e)}>
+                                    <RiDeleteBack2Line />
+                                </button>
+                            </td>
+                        </tr>
+                    </tfoot>
+                </table>
+                <div className='buttonSelections'>
+                    <button onClick={solvePuzzle}>Solve Puzzle</button>
+                    <button>Restart</button>
+                </div>
             </div>
         </section>
     )

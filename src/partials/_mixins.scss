@@ -1,0 +1,18 @@
+@mixin tileRange($rowStart, $rowEnd, $colStart, $colEnd) {
+    @for $row from $rowStart through $rowEnd {
+        @for $col from $colStart through $colEnd {
+            .r#{$row}c#{$col} {
+                background-color: peachpuff;
+            }
+        }
+    }
+}
+
+@mixin cellDimension($cLength) {
+    width: $cLength;
+    height: $cLength;
+}
+
+@mixin tFooterWidth ($length) {
+    width: ($length * $cellCount) + $tableBorder + $tRowPadding;
+}

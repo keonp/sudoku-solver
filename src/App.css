@@ -221,50 +221,301 @@ html {
   overflow: hidden;
 }
 
+h1 {
+  font-family: "Neuton", serif;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+button {
+  font-family: "Neuton", serif;
+  font-size: 1.2rem;
+  text-transform: uppercase;
+}
+
 h1,
 p,
 input,
 table,
 tbody,
 tr,
-td {
+td,
+button {
   padding: 0;
   margin: 0;
 }
 
-table {
+html {
+  font-size: 125%;
+}
+
+.wrapper {
+  max-width: 1280px;
+  width: 90%;
+  margin: 0 auto;
+}
+
+button {
+  border: 2px solid black;
+  border-radius: 5px;
+  background-color: rgb(135, 228, 235);
+  color: black;
+  transition: 0.3s;
+}
+button:hover, button:focus {
+  background-color: teal;
+}
+button:focus {
+  outline: none;
+}
+button[disabled] {
+  background-color: rgb(244, 244, 244);
+  border-color: darkgrey;
+  color: rgb(165, 165, 165);
+}
+
+.sudokuDisplay .wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.sudokuDisplay table {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   border-collapse: collapse;
 }
-table tbody {
-  border: 3px solid black;
+.sudokuDisplay input {
+  border: 1px solid darkgray;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
 }
-table .bottomBorder {
-  border-bottom: 2px solid black;
-}
-table .sideBorder {
-  border-right: 2px solid black;
-}
-table input {
-  border-radius: 0;
-}
-table input:focus {
+.sudokuDisplay input:focus {
   outline: none;
   border: 2px solid blue;
 }
-table .cell {
-  height: 40px;
-  width: 40px;
+.sudokuDisplay .r0c0 {
+  background-color: peachpuff;
+}
+.sudokuDisplay .r0c1 {
+  background-color: peachpuff;
+}
+.sudokuDisplay .r0c2 {
+  background-color: peachpuff;
+}
+.sudokuDisplay .r1c0 {
+  background-color: peachpuff;
+}
+.sudokuDisplay .r1c1 {
+  background-color: peachpuff;
+}
+.sudokuDisplay .r1c2 {
+  background-color: peachpuff;
+}
+.sudokuDisplay .r2c0 {
+  background-color: peachpuff;
+}
+.sudokuDisplay .r2c1 {
+  background-color: peachpuff;
+}
+.sudokuDisplay .r2c2 {
+  background-color: peachpuff;
+}
+.sudokuDisplay .r0c6 {
+  background-color: peachpuff;
+}
+.sudokuDisplay .r0c7 {
+  background-color: peachpuff;
+}
+.sudokuDisplay .r0c8 {
+  background-color: peachpuff;
+}
+.sudokuDisplay .r1c6 {
+  background-color: peachpuff;
+}
+.sudokuDisplay .r1c7 {
+  background-color: peachpuff;
+}
+.sudokuDisplay .r1c8 {
+  background-color: peachpuff;
+}
+.sudokuDisplay .r2c6 {
+  background-color: peachpuff;
+}
+.sudokuDisplay .r2c7 {
+  background-color: peachpuff;
+}
+.sudokuDisplay .r2c8 {
+  background-color: peachpuff;
+}
+.sudokuDisplay .r3c3 {
+  background-color: peachpuff;
+}
+.sudokuDisplay .r3c4 {
+  background-color: peachpuff;
+}
+.sudokuDisplay .r3c5 {
+  background-color: peachpuff;
+}
+.sudokuDisplay .r4c3 {
+  background-color: peachpuff;
+}
+.sudokuDisplay .r4c4 {
+  background-color: peachpuff;
+}
+.sudokuDisplay .r4c5 {
+  background-color: peachpuff;
+}
+.sudokuDisplay .r5c3 {
+  background-color: peachpuff;
+}
+.sudokuDisplay .r5c4 {
+  background-color: peachpuff;
+}
+.sudokuDisplay .r5c5 {
+  background-color: peachpuff;
+}
+.sudokuDisplay .r6c0 {
+  background-color: peachpuff;
+}
+.sudokuDisplay .r6c1 {
+  background-color: peachpuff;
+}
+.sudokuDisplay .r6c2 {
+  background-color: peachpuff;
+}
+.sudokuDisplay .r7c0 {
+  background-color: peachpuff;
+}
+.sudokuDisplay .r7c1 {
+  background-color: peachpuff;
+}
+.sudokuDisplay .r7c2 {
+  background-color: peachpuff;
+}
+.sudokuDisplay .r8c0 {
+  background-color: peachpuff;
+}
+.sudokuDisplay .r8c1 {
+  background-color: peachpuff;
+}
+.sudokuDisplay .r8c2 {
+  background-color: peachpuff;
+}
+.sudokuDisplay .r6c6 {
+  background-color: peachpuff;
+}
+.sudokuDisplay .r6c7 {
+  background-color: peachpuff;
+}
+.sudokuDisplay .r6c8 {
+  background-color: peachpuff;
+}
+.sudokuDisplay .r7c6 {
+  background-color: peachpuff;
+}
+.sudokuDisplay .r7c7 {
+  background-color: peachpuff;
+}
+.sudokuDisplay .r7c8 {
+  background-color: peachpuff;
+}
+.sudokuDisplay .r8c6 {
+  background-color: peachpuff;
+}
+.sudokuDisplay .r8c7 {
+  background-color: peachpuff;
+}
+.sudokuDisplay .r8c8 {
+  background-color: peachpuff;
+}
+.sudokuDisplay tbody {
+  border: 3px solid black;
+}
+.sudokuDisplay .bottomBorder {
+  border-bottom: 2px solid black;
+}
+.sudokuDisplay .sideBorder {
+  border-right: 2px solid black;
+}
+.sudokuDisplay .tileColor {
+  background-color: skyblue;
+}
+.sudokuDisplay .cell {
+  width: 60px;
+  height: 60px;
   text-align: center;
 }
-table .conflict {
+.sudokuDisplay .conflict {
   background-color: red;
 }
-table .userInputDisabled {
-  color: white;
+.sudokuDisplay .userInputDisabled {
+  color: white !important;
   background: black;
-  border: 1px solid black;
+}
+.sudokuDisplay .inputButtons {
+  height: 40px;
+  width: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.sudokuDisplay h1,
+.sudokuDisplay tfoot {
+  margin: 20px 0;
+}
+.sudokuDisplay .inputButtonsRow {
+  width: 550px;
+  display: flex;
+  justify-content: space-between;
+}
+.sudokuDisplay .buttonSelections {
+  display: flex;
+  flex-direction: column;
+}
+.sudokuDisplay .buttonSelections button {
+  margin: 10px 0;
+  padding: 10px 20px;
+  font-weight: 700;
+}
+
+@media (max-width: 600px) {
+  .sudokuDisplay .cell {
+    width: 50px;
+    height: 50px;
+  }
+  .sudokuDisplay .inputButtonsRow {
+    width: 460px;
+  }
+}
+@media (max-width: 490px) {
+  .sudokuDisplay .cell {
+    width: 40px;
+    height: 40px;
+  }
+  .sudokuDisplay .inputButtonsRow {
+    flex-wrap: wrap;
+    width: 370px;
+  }
+  .sudokuDisplay .numberContainer {
+    width: 20%;
+    display: flex;
+    justify-content: center;
+    margin: 10px 0;
+  }
+}
+@media (max-width: 390px) {
+  .sudokuDisplay .cell {
+    width: 30px;
+    height: 30px;
+  }
+  .sudokuDisplay .inputButtonsRow {
+    width: 280px;
+  }
+  .sudokuDisplay .buttonSelections {
+    width: 98%;
+  }
 }/*# sourceMappingURL=App.css.map */
