@@ -1,0 +1,7 @@
+// $tableLength: 
+$cellLength: 40px;
+$cellCount: 9;
+$tableBorder: 6px;
+$tRowPadding: 4px;
+
+$tFooterWidth: ($cellLength * $cellCount) + $tableBorder + $tRowPadding;

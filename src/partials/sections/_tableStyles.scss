@@ -1,13 +1,22 @@
-table {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    border-collapse: collapse;
+.sudokuDisplay {
 
+    .wrapper {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        // justify-content: center;
+    }
+
+    table {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        border-collapse: collapse;
+    }
 
     input {
-        border-radius: 0;
+        // border-radius: 0;
         // border: 1px solid #E3E3E3;
         border: 1px solid darkgray;
         &:focus {
@@ -16,7 +25,6 @@ table {
             // border: 2px solid crimson;
         }
     }
-
 
     @include tileRange(0, 2, 0, 2);
     @include tileRange(0, 2, 6, 8);
@@ -40,8 +48,8 @@ table {
     }
 
     .cell {
-        height: 40px;
-        width: 40px;
+        height: $cellLength;
+        width: $cellLength;
         text-align: center;
     }
     
@@ -52,6 +60,33 @@ table {
     .userInputDisabled {
         color: white;
         background: black;
-        border: 1px solid black;
+        // border: 1px solid black;
+    }
+
+    .inputButtons {
+        height: 30px;
+        width: 30px;
+    }
+
+    .backspaceButton {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        svg {
+            font-size: 2.22rem;
+        }
+    }
+
+    h1,
+    tfoot {
+        margin: 20px 0;
+    }
+    
+    .inputButtonsRow {
+        width: $tFooterWidth;
+        display: flex;
+        justify-content: space-between;        
+
     }
 }
