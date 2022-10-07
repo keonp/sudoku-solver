@@ -288,13 +288,13 @@ function Table() {
                             {
                                 ['1', '2', '3', '4', '5', '6', '7', '8', '9'].map((number) => {
                                     return (
-                                        <td key={`button-${number}`}>
+                                        <td className='numberContainer' key={`button-${number}`}>
                                             <button className='inputButtons' value={number} disabled={disableNumbers || disableAll} onClick={(e) => handleButtonPress(e)}>{number}</button>
                                         </td>
                                     )
                                 })
                             }
-                            <td>
+                            <td className='numberContainer'> 
                                 <button className='inputButtons backspaceButton' value="" disabled={disableAll} onClick={(e) => handleButtonPress(e)}>
                                     <RiDeleteBack2Line />
                                 </button>

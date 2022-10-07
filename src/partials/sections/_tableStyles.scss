@@ -4,7 +4,6 @@
         display: flex;
         flex-direction: column;
         align-items: center;
-        // justify-content: center;
     }
 
     table {
@@ -16,14 +15,11 @@
     }
 
     input {
-        // border-radius: 0;
-        // border: 1px solid #E3E3E3;
         border: 1px solid darkgray;
         user-select: none;
         &:focus {
             outline: none;
             border: 2px solid blue;
-            // border: 2px solid crimson;
         }        
     }
 
@@ -49,8 +45,7 @@
     }
 
     .cell {
-        height: $cellLength;
-        width: $cellLength;
+        @include cellDimension(60px);
         text-align: center;
     }
     
@@ -69,7 +64,6 @@
         display: flex;
         justify-content: center;
         align-items: center;
-        transition: 0.3s;
     }
 
     h1,
@@ -78,8 +72,73 @@
     }
     
     .inputButtonsRow {
-        width: $tFooterWidth;
+        @include tFooterWidth(60px);
         display: flex;
         justify-content: space-between;
+    }
+
+    .buttonSelections {
+        display: flex;
+        flex-direction: column;
+        button {
+            margin: 10px 0;
+            padding: 10px 20px;
+            font-weight: 700;
+        }
+    }
+}
+
+@media(max-width: 600px) {
+
+    .sudokuDisplay {
+
+        .cell {
+            @include cellDimension(50px);
+        }
+
+        .inputButtonsRow {
+            @include tFooterWidth(50px);
+        }
+    }
+}
+
+
+@media(max-width: 490px) {
+
+    .sudokuDisplay {
+
+        .cell {
+            @include cellDimension(40px);
+        }
+
+        .inputButtonsRow {
+            flex-wrap: wrap;
+            @include tFooterWidth(40px);
+        }
+
+        .numberContainer {
+            width: 20%;
+            display: flex;
+            justify-content: center;
+            margin: 10px 0;
+        }
+    }
+}
+
+@media(max-width: 390px) {
+
+    .sudokuDisplay {
+
+        .cell {
+            @include cellDimension(30px);
+        }
+
+        .inputButtonsRow {
+            @include tFooterWidth(30px);
+        }
+        
+        .buttonSelections  {
+            width: 98%;
+        }
     }
 }

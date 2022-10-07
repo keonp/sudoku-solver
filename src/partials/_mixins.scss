@@ -7,3 +7,12 @@
         }
     }
 }
+
+@mixin cellDimension($cLength) {
+    width: $cLength;
+    height: $cLength;
+}
+
+@mixin tFooterWidth ($length) {
+    width: ($length * $cellCount) + $tableBorder + $tRowPadding;
+}

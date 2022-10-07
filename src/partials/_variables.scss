@@ -1,9 +1,6 @@
-$cellLength: 60px;
 $cellCount: 9;
 $tableBorder: 6px;
 $tRowPadding: 4px;
-
-$tFooterWidth: ($cellLength * $cellCount) + $tableBorder + $tRowPadding;
 
 $bodyFont: 'Neuton', serif;
 $lightTeal:  rgb(135, 228, 235);
