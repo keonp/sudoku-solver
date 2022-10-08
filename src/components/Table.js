@@ -20,15 +20,6 @@ function Table() {
         )
     );
 
-    // const [numberButtons, setNumberButtons] = useState(
-    //     Array.from(Array(9).fill(null), (element, index) => {
-    //         return {
-    //             value: index,
-    //             disable: false
-    //         }
-    //     })
-    // )
-
     // const [inputSatus, setInputStatus] = useState(false);
     const [inputCell, setInputCell] = useState("");
     const [conflicts, setConflicts] = useState([]);
@@ -36,7 +27,11 @@ function Table() {
     const [solved, setSolved] = useState(false);
     const [testState, setTestState] = useState(false);
     const [disableAll, setdisableAll] = useState(false);
+    const [newTable, setNewTable] = useState([]);
 
+    useEffect(() => {
+        setNewTable(cellStatus);
+    }, [])
     // useEffect(() => {
     //     // console.log("ran");
     //     if (solved) {
@@ -226,7 +221,7 @@ function Table() {
         setdisableAll(true);
         // setDisableNumbers(true)
         setCellStatus(solver(updateCells));
-        // setSolved(true);
+        setSolved(true);
         // setCellStatus(results);
     }
 
@@ -303,7 +298,7 @@ function Table() {
                     </tfoot>
                 </table>
                 <div className='buttonSelections'>
-                    <button onClick={solvePuzzle}>Solve Puzzle</button>
+                    <button disabled={solved} onClick={solvePuzzle}>Solve Puzzle</button>
                     <button>Restart</button>
                 </div>
             </div>
