@@ -288,10 +288,6 @@ button[disabled] {
 }
 .sudokuDisplay input {
   border: 1px solid darkgray;
-  -webkit-user-select: none;
-     -moz-user-select: none;
-      -ms-user-select: none;
-          user-select: none;
 }
 .sudokuDisplay input:focus {
   outline: none;
