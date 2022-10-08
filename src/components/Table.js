@@ -193,7 +193,9 @@ function Table() {
         setdisableAll(false);
         setSolved(false);
         setInputCell("");
-        // setCellStatus(updateCells);
+        setDisableNumbers(false);
+        setConflicts([]);
+        setConflictingValue(null);
     }
 
     function refreshTable(table) {
