@@ -8,6 +8,7 @@ function Table() {
         Array.from(Array(9), () => Array(9).fill(null).map(() => {
                 return {
                     // status if cell is empty or not
+                    // NOT USED
                     status: false, 
                     // value of the cell
                     value: "",
@@ -24,9 +25,11 @@ function Table() {
     const [conflicts, setConflicts] = useState([]);
     const [conflictingValue, setConflictingValue] = useState(null);
     const [disableNumbers, setDisableNumbers] = useState(false);
-    const [solved, setSolved] = useState(false);
+    const [toggleSolved, setToggleSolved] = useState(false);
+
+    // A state that acts as a toggle for adding a class that identifies inputs added by the user
     const [userInputState, setUserInputState] = useState(false);
-    const [disableAll, setdisableAll] = useState(false);
+    const [disableAll, setDisableAll] = useState(false);
 
 
     function handleInput(e) {
@@ -38,7 +41,7 @@ function Table() {
         }
     }
 
-    function updateInputCells(inputElement, value, status, conflicts=null) {
+    function updateInputCells(inputElement, value, status, conflictsArray=null) {
         const updateCells = [...cellStatus];
         const [row, col] = inputElement.id;
 
@@ -48,7 +51,7 @@ function Table() {
             // If there is a conflict according to the rules of sudoku
             if (results) {
                 const [_row, _col] = results;
-                console.log(row, col, _row, _col)
+                // console.log(row, col, _row, _col)
 
                 setConflicts([[+row, +col], [_row, _col]]);
                 setConflictingValue(value);
@@ -56,37 +59,33 @@ function Table() {
                 updateCells[_row][_col].state = 'conflict';
                 updateCells[row][col].state = 'conflict';
                 setDisableNumbers(true);
+                setToggleSolved(true);
 
-                toggleDisable(true, updateCells, false, _row, _col, row, col);
+                toggleDisable(updateCells, false, _row, _col, row, col);
 
             // if there are no conflicts
             } else {
                 updateCells[row][col].state = userInputState;
             }
-        // If there is no value (a backspace)
+        // If there is no value (due to a backspace)
         } else {
             updateCells[row][col].state = "";
         }
 
-        if (conflicts) {
-            const [conrow1, concol1, conrow2, concol2] = [...conflicts[0], ...conflicts[1]];
+        if (conflictsArray) {
+            const [conrow1, concol1, conrow2, concol2] = [...conflictsArray[0], ...conflictsArray[1]];
 
-            if (updateCells[conrow1][concol1].state === updateCells[row][col].state) {
-                updateCells[conrow1][concol1].state = "";
-            } else {
+            // check if cell @ conflict coordinates has a state equal to the cell state that was JUST assigned ""
+            if (!(updateCells[conrow1][concol1].state === updateCells[row][col].state)) {
                 updateCells[conrow1][concol1].state = userInputState;
-            }
-
-            if (updateCells[conrow2][concol2].state === updateCells[row][col].state) {
-                updateCells[conrow2][concol2].state = "";
             } else {
                 updateCells[conrow2][concol2].state = userInputState;
             }
-            // updateCells[conrow1][concol1].state = "";
-            // updateCells[conrow2][concol2].state = "";
-            setDisableNumbers(false);
 
-            toggleDisable(true, updateCells, true, conrow1, concol1, conrow2, concol2);
+            setDisableNumbers(false);
+            setToggleSolved(false);
+
+            toggleDisable(updateCells, true, conrow1, concol1, conrow2, concol2);
             setConflicts([]);
             setConflictingValue(null);
         }
@@ -96,27 +95,24 @@ function Table() {
 
         setCellStatus(updateCells);
         inputCell.focus();
-        // setInputCell("");
     }
 
-    function toggleDisable(forConflicts, array, status, row1, col1, row2, col2) {
-        if (forConflicts) {
-            array.forEach((element, rIndex) => {
-                element.forEach((cell, cIndex) => {
-                    if ((row1 === rIndex && col1 === cIndex) || (+row2 === rIndex && +col2 === cIndex)) {
-                    } else {
-                        array[rIndex][cIndex].disable = status;
-                    }
-                })
+    function toggleDisable(array, status, row1, col1, row2, col2) {
+        array.forEach((element, rIndex) => {
+            element.forEach((cell, cIndex) => {
+                if ((row1 === rIndex && col1 === cIndex) || (+row2 === rIndex && +col2 === cIndex)) {
+                } else {
+                    array[rIndex][cIndex].disable = status;
+                }
             })
-        }
+        })
     }
 
 
     function handleKeyPress(e) {
         const inputElement = e.target;
         const cell = [...inputElement.id];
-        console.log(inputElement)
+        // console.log(inputElement)
         const isNumber = (/^[1-9]+$/.test(+inputElement.value));
 
         if (!(isNumber && conflictingValue)) {
@@ -125,7 +121,7 @@ function Table() {
                 updateInputCells(inputElement, inputElement.value, true);
     
             } else if (inputElement.value === "" && conflicts[0] && (CompareString(cell, conflicts[0]) || CompareString(cell, conflicts[1]))) {
-                console.log("you deleted a number");
+                console.log("you deleted a conflicting number");
                 updateInputCells(inputElement, inputElement.value, false, conflicts);
     
             } else if (inputElement.value === "") {
@@ -180,9 +176,9 @@ function Table() {
         console.log(updateCells);
 
         setUserInputState('userInputDisabled');
-        setdisableAll(true);
+        setDisableAll(true);
         setCellStatus(solver(updateCells));
-        setSolved(true);
+        setToggleSolved(true);
     }
 
     function handleRefresh() {
@@ -190,8 +186,8 @@ function Table() {
         const updateCells = [...cellStatus];
         refreshTable(updateCells);
         setUserInputState(false);
-        setdisableAll(false);
-        setSolved(false);
+        setDisableAll(false);
+        setToggleSolved(false);
         setInputCell("");
         setDisableNumbers(false);
         setConflicts([]);
@@ -279,7 +275,7 @@ function Table() {
                     </tfoot>
                 </table>
                 <div className='buttonSelections'>
-                    <button disabled={solved} onClick={solvePuzzle}>Solve Puzzle</button>
+                    <button disabled={toggleSolved} onClick={solvePuzzle}>Solve Puzzle</button>
                     <button onClick={handleRefresh}>Restart</button>
                 </div>
             </div>
