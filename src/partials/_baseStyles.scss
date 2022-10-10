@@ -28,8 +28,10 @@ button {
     transition: 0.3s;
 
     &:hover,
-    &:focus {
+    &:focus
+     {
         background-color: teal;
+        cursor: pointer;
     }
 
     &:focus {

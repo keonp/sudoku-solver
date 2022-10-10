@@ -3,7 +3,6 @@ function cellValidation(board, row, col, input) {
     function rowChecker(board, row, input) {
         for (let col = 0; col < 9; col ++) {
             if (board[row][col].value === input) {
-                // return [[row][col]];
                 return [+row, col];                
             }
         }
@@ -13,7 +12,6 @@ function cellValidation(board, row, col, input) {
     function colChecker (board, col, input) {
         for (let row = 0; row < 9; row ++) {
             if (board[row][col].value === input) {
-                // return [[row][col]];
                 return [row, +col];
             }
             
@@ -30,7 +28,6 @@ function cellValidation(board, row, col, input) {
         for (let _row = rowStart; _row <= rowEnd; _row++) {
             for (let _col = colStart; _col <= colEnd; _col++) {
                 if (board[_row][_col].value === input) {
-                    // return [[row][col]];
                     return [_row, _col];
 
                 }

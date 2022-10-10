@@ -4,6 +4,8 @@
         display: flex;
         flex-direction: column;
         align-items: center;
+
+        position: relative;
     }
 
     table {
@@ -16,7 +18,6 @@
 
     input {
         border: 1px solid darkgray;
-        user-select: none;
         &:focus {
             outline: none;
             border: 2px solid blue;
@@ -92,6 +93,10 @@
 
     .sudokuDisplay {
 
+        h1 {
+            max-width: 318px;
+        }
+
         .cell {
             @include cellDimension(50px);
         }
@@ -103,7 +108,7 @@
 }
 
 
-@media(max-width: 490px) {
+@media (max-width: 490px) {
 
     .sudokuDisplay {
 
@@ -125,7 +130,7 @@
     }
 }
 
-@media(max-width: 390px) {
+@media (max-width: 390px) {
 
     .sudokuDisplay {
 
