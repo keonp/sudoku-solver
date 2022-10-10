@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { RiDeleteBack2Line } from 'react-icons/ri';
 import cellValidation from '../utilities/cellValidation';
 import solver from '../utilities/solver';
+import AboutModal from './AboutModal';
 
 function Table() {
     const [cellStatus, setCellStatus] = useState(
@@ -25,6 +26,7 @@ function Table() {
     const [toggleSolved, setToggleSolved] = useState(false);
     const [userInputState, setUserInputState] = useState(false); // A state that acts as a toggle for adding a class that identifies inputs added by the user
     const [disableAll, setDisableAll] = useState(false);
+    const[aboutToggle, setAboutToggle] = useState(false);
 
 
     function handleInput(e) {
@@ -186,6 +188,10 @@ function Table() {
         setCellStatus(table);
     }
 
+    // function handleAboutToggle() {
+
+    // }
+
     function handleValue() {
         // do nothing function to handle value overwriting defaultValue issue
     }
@@ -195,6 +201,12 @@ function Table() {
         <section className='sudokuDisplay'>
             <div className='wrapper'>
                 <h1>Sudoku Solver</h1>
+                <div className='aboutContainer'>
+                    <button className='aboutButton' onClick={() => setAboutToggle(!aboutToggle)}>?</button>
+                    {
+                        aboutToggle ? <AboutModal/> : null
+                    }
+                </div>
                 <table>
                     <tbody
                         onClick={(e) => handleInput(e)}
