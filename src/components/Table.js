@@ -7,9 +7,6 @@ function Table() {
     const [cellStatus, setCellStatus] = useState(
         Array.from(Array(9), () => Array(9).fill(null).map(() => {
                 return {
-                    // status if cell is empty or not
-                    // NOT USED
-                    // status: false, 
                     // value of the cell
                     value: "",
                     // state for conflict
@@ -26,22 +23,17 @@ function Table() {
     const [conflictingValue, setConflictingValue] = useState(null);
     const [disableNumbers, setDisableNumbers] = useState(false);
     const [toggleSolved, setToggleSolved] = useState(false);
-
-    // A state that acts as a toggle for adding a class that identifies inputs added by the user
-    const [userInputState, setUserInputState] = useState(false);
+    const [userInputState, setUserInputState] = useState(false); // A state that acts as a toggle for adding a class that identifies inputs added by the user
     const [disableAll, setDisableAll] = useState(false);
 
 
     function handleInput(e) {
         if (e.target.localName === 'input')  {
-            // console.log(e.target)
-            // console.log(e.target.value)
-            // setEmptyString(e.target.value);
             setInputCell(e.target);
         }
     }
 
-    function updateInputCells(inputElement, value, status, conflictsArray=null) {
+    function updateInputCells(inputElement, value, conflictsArray=null) {
         const updateCells = [...cellStatus];
         const [row, col] = inputElement.id;
 
@@ -51,19 +43,15 @@ function Table() {
             // If there is a conflict according to the rules of sudoku
             if (results) {
                 const [_row, _col] = results;
-                // console.log(row, col, _row, _col)
-
                 setConflicts([[+row, +col], [_row, _col]]);
                 setConflictingValue(value);
-
                 updateCells[_row][_col].state = 'conflict';
                 updateCells[row][col].state = 'conflict';
                 setDisableNumbers(true);
                 setToggleSolved(true);
-
                 toggleDisable(updateCells, false, _row, _col, row, col);
 
-            // if there are no conflicts
+            // If there are no conflicts
             } else {
                 updateCells[row][col].state = userInputState;
             }
@@ -72,10 +60,11 @@ function Table() {
             updateCells[row][col].state = "";
         }
 
+        // If a conflict is being resolved
         if (conflictsArray) {
             const [conrow1, concol1, conrow2, concol2] = [...conflictsArray[0], ...conflictsArray[1]];
 
-            // check if cell @ conflict coordinates has a state equal to the cell state that was JUST assigned ""
+            // check if cell @ conflict coordinates has a state equal to the cell state that was JUST assigned "" on line 62
             if (!(updateCells[conrow1][concol1].state === updateCells[row][col].state)) {
                 updateCells[conrow1][concol1].state = userInputState;
             } else {
@@ -84,15 +73,12 @@ function Table() {
 
             setDisableNumbers(false);
             setToggleSolved(false);
-
             toggleDisable(updateCells, true, conrow1, concol1, conrow2, concol2);
             setConflicts([]);
             setConflictingValue(null);
         }
 
-        // updateCells[row][col].status = status;
         updateCells[row][col].value = value;
-
         setCellStatus(updateCells);
         inputCell.focus();
     }
@@ -112,33 +98,29 @@ function Table() {
     function handleKeyPress(e) {
         const inputElement = e.target;
         const cell = [...inputElement.id];
-        // console.log(inputElement)
         const isNumber = (/^[1-9]+$/.test(+inputElement.value));
 
         if (!(isNumber && conflictingValue)) {
             if (isNumber) {
                 console.log("you added the number: " +inputElement.value);
-                updateInputCells(inputElement, inputElement.value, true);
+                updateInputCells(inputElement, inputElement.value);
     
             } else if (inputElement.value === "" && conflicts[0] && (CompareString(cell, conflicts[0]) || CompareString(cell, conflicts[1]))) {
                 console.log("you deleted a conflicting number");
-                updateInputCells(inputElement, inputElement.value, false, conflicts);
+                updateInputCells(inputElement, inputElement.value, conflicts);
     
             } else if (inputElement.value === "") {
                 console.log("you deleted a number");
-                updateInputCells(inputElement, inputElement.value, false);
+                updateInputCells(inputElement, inputElement.value);
     
             } else {
                 inputElement.value = "";
                 console.log("invalid character")
             }
         }
-
     }
 
     function CompareString(object1, object2) {
-        // console.log(object1.toString())
-        // console.log(object2.toString())
         return object1.toString() === object2.toString();
     }
 
@@ -147,31 +129,24 @@ function Table() {
         if (inputCell) {
             const button = e.target;
 
-
             const cell = [...inputCell.id];
 
             // if you pressed a button with the same number was the number in the selected cell
             if (button.value === inputCell.value) {
                 inputCell.focus();
 
-            }
-            
-            else if (button.value) {
-                updateInputCells(inputCell, button.value, true);
+            } else if (button.value) {
+                updateInputCells(inputCell, button.value);
                 inputCell.value = button.value;
 
             } else if (conflicts[0] && (CompareString(cell, conflicts[0]) || CompareString(cell, conflicts[1]))) {
-                updateInputCells(inputCell, "", false, conflicts);
+                updateInputCells(inputCell, "", conflicts);
                 inputCell.value = "";
 
             } else {
-                updateInputCells(inputCell, "", false);
+                updateInputCells(inputCell, "");
                 inputCell.value = "";
-            } 
-
-            // else {
-            //     handleKeyPress(button)
-            // }
+            }
         }
     }
 
@@ -182,9 +157,6 @@ function Table() {
     // solves the puzzle
     function solvePuzzle() {
         const updateCells = [...cellStatus];
-
-        // console.log(updateCells);
-
         setUserInputState('userInputDisabled');
         setDisableAll(true);
         setCellStatus(solver(updateCells));
@@ -192,7 +164,6 @@ function Table() {
     }
 
     function handleRefresh() {
-
         const updateCells = [...cellStatus];
         refreshTable(updateCells);
         setUserInputState(false);
@@ -207,7 +178,6 @@ function Table() {
     function refreshTable(table) {
         table.forEach((row) => {
             row.forEach((cell) => {
-                // cell.status = false;
                 cell.value = "";
                 cell.state = "";
                 cell.disable = true;
