@@ -10,7 +10,7 @@ function AboutModal({setAboutToggle}) {
         <div onClick={(e) => handleAboutToggle(e.target.className)} className="aboutModalContainer">
             <div className="aboutPage">
                 <button onClick={() => setAboutToggle(false)} className="closeButton">
-                    <span className="sr-only">close button</span>
+                    <span className="sr-only">Close button</span>
                     X
                 </button>
                 <h2>Sudoku solver</h2>

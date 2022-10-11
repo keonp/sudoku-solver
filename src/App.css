@@ -306,139 +306,139 @@ button[disabled] {
   border: 2px solid blue;
 }
 .sudokuDisplay .r0c0 {
-  background-color: peachpuff;
+  background-color: peachpuff !important;
 }
 .sudokuDisplay .r0c1 {
-  background-color: peachpuff;
+  background-color: peachpuff !important;
 }
 .sudokuDisplay .r0c2 {
-  background-color: peachpuff;
+  background-color: peachpuff !important;
 }
 .sudokuDisplay .r1c0 {
-  background-color: peachpuff;
+  background-color: peachpuff !important;
 }
 .sudokuDisplay .r1c1 {
-  background-color: peachpuff;
+  background-color: peachpuff !important;
 }
 .sudokuDisplay .r1c2 {
-  background-color: peachpuff;
+  background-color: peachpuff !important;
 }
 .sudokuDisplay .r2c0 {
-  background-color: peachpuff;
+  background-color: peachpuff !important;
 }
 .sudokuDisplay .r2c1 {
-  background-color: peachpuff;
+  background-color: peachpuff !important;
 }
 .sudokuDisplay .r2c2 {
-  background-color: peachpuff;
+  background-color: peachpuff !important;
 }
 .sudokuDisplay .r0c6 {
-  background-color: peachpuff;
+  background-color: peachpuff !important;
 }
 .sudokuDisplay .r0c7 {
-  background-color: peachpuff;
+  background-color: peachpuff !important;
 }
 .sudokuDisplay .r0c8 {
-  background-color: peachpuff;
+  background-color: peachpuff !important;
 }
 .sudokuDisplay .r1c6 {
-  background-color: peachpuff;
+  background-color: peachpuff !important;
 }
 .sudokuDisplay .r1c7 {
-  background-color: peachpuff;
+  background-color: peachpuff !important;
 }
 .sudokuDisplay .r1c8 {
-  background-color: peachpuff;
+  background-color: peachpuff !important;
 }
 .sudokuDisplay .r2c6 {
-  background-color: peachpuff;
+  background-color: peachpuff !important;
 }
 .sudokuDisplay .r2c7 {
-  background-color: peachpuff;
+  background-color: peachpuff !important;
 }
 .sudokuDisplay .r2c8 {
-  background-color: peachpuff;
+  background-color: peachpuff !important;
 }
 .sudokuDisplay .r3c3 {
-  background-color: peachpuff;
+  background-color: peachpuff !important;
 }
 .sudokuDisplay .r3c4 {
-  background-color: peachpuff;
+  background-color: peachpuff !important;
 }
 .sudokuDisplay .r3c5 {
-  background-color: peachpuff;
+  background-color: peachpuff !important;
 }
 .sudokuDisplay .r4c3 {
-  background-color: peachpuff;
+  background-color: peachpuff !important;
 }
 .sudokuDisplay .r4c4 {
-  background-color: peachpuff;
+  background-color: peachpuff !important;
 }
 .sudokuDisplay .r4c5 {
-  background-color: peachpuff;
+  background-color: peachpuff !important;
 }
 .sudokuDisplay .r5c3 {
-  background-color: peachpuff;
+  background-color: peachpuff !important;
 }
 .sudokuDisplay .r5c4 {
-  background-color: peachpuff;
+  background-color: peachpuff !important;
 }
 .sudokuDisplay .r5c5 {
-  background-color: peachpuff;
+  background-color: peachpuff !important;
 }
 .sudokuDisplay .r6c0 {
-  background-color: peachpuff;
+  background-color: peachpuff !important;
 }
 .sudokuDisplay .r6c1 {
-  background-color: peachpuff;
+  background-color: peachpuff !important;
 }
 .sudokuDisplay .r6c2 {
-  background-color: peachpuff;
+  background-color: peachpuff !important;
 }
 .sudokuDisplay .r7c0 {
-  background-color: peachpuff;
+  background-color: peachpuff !important;
 }
 .sudokuDisplay .r7c1 {
-  background-color: peachpuff;
+  background-color: peachpuff !important;
 }
 .sudokuDisplay .r7c2 {
-  background-color: peachpuff;
+  background-color: peachpuff !important;
 }
 .sudokuDisplay .r8c0 {
-  background-color: peachpuff;
+  background-color: peachpuff !important;
 }
 .sudokuDisplay .r8c1 {
-  background-color: peachpuff;
+  background-color: peachpuff !important;
 }
 .sudokuDisplay .r8c2 {
-  background-color: peachpuff;
+  background-color: peachpuff !important;
 }
 .sudokuDisplay .r6c6 {
-  background-color: peachpuff;
+  background-color: peachpuff !important;
 }
 .sudokuDisplay .r6c7 {
-  background-color: peachpuff;
+  background-color: peachpuff !important;
 }
 .sudokuDisplay .r6c8 {
-  background-color: peachpuff;
+  background-color: peachpuff !important;
 }
 .sudokuDisplay .r7c6 {
-  background-color: peachpuff;
+  background-color: peachpuff !important;
 }
 .sudokuDisplay .r7c7 {
-  background-color: peachpuff;
+  background-color: peachpuff !important;
 }
 .sudokuDisplay .r7c8 {
-  background-color: peachpuff;
+  background-color: peachpuff !important;
 }
 .sudokuDisplay .r8c6 {
-  background-color: peachpuff;
+  background-color: peachpuff !important;
 }
 .sudokuDisplay .r8c7 {
-  background-color: peachpuff;
+  background-color: peachpuff !important;
 }
 .sudokuDisplay .r8c8 {
-  background-color: peachpuff;
+  background-color: peachpuff !important;
 }
 .sudokuDisplay tbody {
   border: 3px solid black;
@@ -463,7 +463,7 @@ button[disabled] {
 }
 .sudokuDisplay .userInputDisabled {
   color: white !important;
-  background: black;
+  background: black !important;
 }
 .sudokuDisplay .inputButtons {
   height: 40px;
@@ -546,20 +546,6 @@ button[disabled] {
   right: 0;
   top: 2.5%;
 }
-.aboutContainer .aboutPage {
-  border: 5px solid black;
-  border-radius: 15px;
-  padding: 15px;
-  position: relative;
-  z-index: 10;
-  background-color: peachpuff;
-  height: 72%;
-  width: 85%;
-  overflow-y: auto;
-}
-.aboutContainer .aboutPage p {
-  margin: 10px 0;
-}
 .aboutContainer .closeButton {
   position: absolute;
   right: 15px;
@@ -580,6 +566,20 @@ button[disabled] {
   justify-content: center;
   align-items: center;
   background-color: rgba(0, 0, 0, 0.5);
+}
+.aboutContainer .aboutPage {
+  border: 5px solid black;
+  border-radius: 15px;
+  padding: 15px;
+  position: relative;
+  z-index: 10;
+  background-color: peachpuff;
+  height: 72%;
+  width: 85%;
+  overflow-y: auto;
+}
+.aboutContainer .aboutPage p {
+  margin: 10px 0;
 }
 .aboutContainer .highlight {
   color: crimson;

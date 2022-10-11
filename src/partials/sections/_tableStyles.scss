@@ -49,6 +49,11 @@
         @include cellDimension(60px);
         text-align: center;
         border-radius: 0;
+
+        &:disabled {
+            // color: inherit !important;
+            // background-color: inherit !important;
+        }
     }
     
     .conflict {
@@ -57,7 +62,7 @@
     
     .userInputDisabled {
         color: white !important;
-        background: black;
+        background: black !important;
     }
 
     .inputButtons {

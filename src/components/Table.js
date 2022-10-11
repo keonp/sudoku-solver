@@ -206,7 +206,10 @@ function Table() {
             <div className='wrapper'>
                 <h1>Sudoku Solver</h1>
                 <div className='aboutContainer'>
-                    <button className='aboutButton' onClick={() => setAboutToggle(!aboutToggle)}>?</button>
+                    <button className='aboutButton' onClick={() => setAboutToggle(!aboutToggle)}>
+                        <span className='sr-only'>About button: To explain the puzzle features</span>
+                        ?
+                    </button>
                     {
                         aboutToggle ? <AboutModal setAboutToggle={setAboutToggle}/> : null
                     }
@@ -264,6 +267,7 @@ function Table() {
                             }
                             <td className='numberContainer'> 
                                 <button className='inputButtons backspaceButton' value="" disabled={disableAll} onClick={(e) => handleButtonPress(e)}>
+                                    <span className='sr-only'>Backspace button</span>
                                     <RiDeleteBack2Line />
                                 </button>
                             </td>

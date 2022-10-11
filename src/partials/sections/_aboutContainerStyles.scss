@@ -18,22 +18,6 @@
         top: 2.5%;
     }
 
-    .aboutPage {
-        border: 5px solid black;
-        border-radius: 15px;
-        padding: 15px;
-        position: relative;
-        z-index: 10;
-        background-color: peachpuff;
-        height: 72%;
-        width: 85%;
-        overflow-y: auto;
-
-        p {
-            margin: 10px 0;
-        }
-    }
-
     .closeButton {
         position: absolute;
         right: 15px;
@@ -55,6 +39,22 @@
         justify-content: center;
         align-items: center;
         background-color: rgba(0, 0, 0, 0.5);
+    }
+
+    .aboutPage {
+        border: 5px solid black;
+        border-radius: 15px;
+        padding: 15px;
+        position: relative;
+        z-index: 10;
+        background-color: peachpuff;
+        height: 72%;
+        width: 85%;
+        overflow-y: auto;
+
+        p {
+            margin: 10px 0;
+        }
     }
 
     .highlight {
