@@ -48,6 +48,7 @@
     .cell {
         @include cellDimension(60px);
         text-align: center;
+        border-radius: 0;
     }
     
     .conflict {
