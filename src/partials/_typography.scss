@@ -4,6 +4,15 @@ h1 {
     text-transform: uppercase;
 }
 
+h2 {
+    font-family: $bodyFont;
+    text-transform: uppercase;
+}
+ p {
+    font-family: $paragraphFont;
+    line-height: 1.3;
+ }
+
 button {
     font-family: $bodyFont;
     font-size: 1.2rem;

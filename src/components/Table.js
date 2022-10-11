@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { RiDeleteBack2Line } from 'react-icons/ri';
 import cellValidation from '../utilities/cellValidation';
 import solver from '../utilities/solver';
@@ -27,6 +27,14 @@ function Table() {
     const [userInputState, setUserInputState] = useState(false); // A state that acts as a toggle for adding a class that identifies inputs added by the user
     const [disableAll, setDisableAll] = useState(false);
     const[aboutToggle, setAboutToggle] = useState(false);
+
+    useEffect(() => {
+        if (aboutToggle) {
+            document.body.style.overflow = 'hidden';
+        } else {
+            document.body.style.overflow = 'auto';
+        }
+    }, [aboutToggle])
 
 
     function handleInput(e) {
@@ -188,10 +196,6 @@ function Table() {
         setCellStatus(table);
     }
 
-    // function handleAboutToggle() {
-
-    // }
-
     function handleValue() {
         // do nothing function to handle value overwriting defaultValue issue
     }
@@ -204,7 +208,7 @@ function Table() {
                 <div className='aboutContainer'>
                     <button className='aboutButton' onClick={() => setAboutToggle(!aboutToggle)}>?</button>
                     {
-                        aboutToggle ? <AboutModal/> : null
+                        aboutToggle ? <AboutModal setAboutToggle={setAboutToggle}/> : null
                     }
                 </div>
                 <table>
