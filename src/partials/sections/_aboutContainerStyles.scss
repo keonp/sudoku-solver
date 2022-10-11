@@ -45,7 +45,6 @@
         padding: 3px;
     }
 
-
     .aboutModalContainer {
         position: fixed;
         top: 0;
@@ -56,6 +55,11 @@
         justify-content: center;
         align-items: center;
         background-color: rgba(0, 0, 0, 0.5);
+    }
+
+    .highlight {
+        color: crimson;
+        font-weight: 700;
     }
 }
 
