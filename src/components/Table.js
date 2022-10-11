@@ -276,7 +276,7 @@ function Table() {
                 </table>
                 <div className='buttonSelections'>
                     <button disabled={toggleSolved} onClick={solvePuzzle}>Solve Puzzle</button>
-                    <button onClick={handleRefresh}>Restart</button>
+                    <button className='restartButton' onClick={handleRefresh}>Restart</button>
                 </div>
             </div>
         </section>

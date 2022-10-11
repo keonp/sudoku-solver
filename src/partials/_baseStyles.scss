@@ -27,15 +27,14 @@ button {
     color: black;
     transition: 0.3s;
 
-    &:hover,
-    &:focus
-     {
+    &:hover {
         background-color: teal;
         cursor: pointer;
     }
-
+    
     &:focus {
         outline: none;
+        border-color: crimson;
     }
 
     &:disabled {

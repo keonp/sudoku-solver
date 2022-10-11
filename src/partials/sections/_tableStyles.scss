@@ -4,7 +4,6 @@
         display: flex;
         flex-direction: column;
         align-items: center;
-
         position: relative;
     }
 
@@ -58,12 +57,7 @@
     .userInputDisabled {
         color: white !important;
         background: black !important;
-        &:disabled {
-            color: white !important;
-            background: black !important;
-        }
     }
-
 
     .inputButtons {
         height: 40px;
@@ -91,6 +85,12 @@
             margin: 10px 0;
             padding: 10px 20px;
             font-weight: 700;
+        }
+    }
+
+    .restartButton {
+        &:active {
+            background-color: $lightTeal;
         }
     }
 }

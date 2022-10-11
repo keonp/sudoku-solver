@@ -1,5 +1,6 @@
 function cellValidation(board, row, col, input) {
 
+    // Determines if the value input by the user is present in the same row
     function rowChecker(board, row, input) {
         for (let col = 0; col < 9; col ++) {
             if (board[row][col].value === input) {
@@ -9,6 +10,7 @@ function cellValidation(board, row, col, input) {
         return false;
     }
 
+    // Determines if the value input by the user is present in the same column
     function colChecker (board, col, input) {
         for (let row = 0; row < 9; row ++) {
             if (board[row][col].value === input) {
@@ -19,6 +21,7 @@ function cellValidation(board, row, col, input) {
         return false;
     }
 
+    // Determines if the value input by the user is present in the same 3x3 subgrid
     function subGridChecker (board, row, col, input) {
         const rowStart = row - (row % 3);
         const rowEnd = rowStart + 2;

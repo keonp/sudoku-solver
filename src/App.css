@@ -272,12 +272,13 @@ button {
   color: black;
   transition: 0.3s;
 }
-button:hover, button:focus {
+button:hover {
   background-color: teal;
   cursor: pointer;
 }
 button:focus {
   outline: none;
+  border-color: crimson;
 }
 button:disabled {
   background-color: rgb(244, 244, 244);
@@ -468,10 +469,6 @@ button:disabled:hover {
   color: white !important;
   background: black !important;
 }
-.sudokuDisplay .userInputDisabled:disabled {
-  color: white !important;
-  background: black !important;
-}
 .sudokuDisplay .inputButtons {
   height: 40px;
   width: 40px;
@@ -496,6 +493,9 @@ button:disabled:hover {
   margin: 10px 0;
   padding: 10px 20px;
   font-weight: 700;
+}
+.sudokuDisplay .restartButton:active {
+  background-color: rgb(135, 228, 235);
 }
 
 @media (max-width: 600px) {
