@@ -16,25 +16,33 @@
         position: absolute;
         right: 0;
         top: 2.5%;
-        // z-index: 20;
     }
 
     .aboutPage {
         border: 5px solid black;
         border-radius: 15px;
         padding: 15px;
-        // position: absolute;
+        position: relative;
         z-index: 10;
         background-color: peachpuff;
-        // transform: translate(-50%,50%);
-        // transform: translate(-50%);
-        min-height: 72%;
-        width: 95%;
-        // overflow: scroll;
+        height: 72%;
+        width: 85%;
+        overflow-y: auto;
 
         p {
             margin: 10px 0;
         }
+    }
+
+    .closeButton {
+        position: absolute;
+        right: 15px;
+        width: 35px;
+        height: 35px;
+        border-radius: 50%;
+        font-family: $paragraphFont;
+        font-weight: 700;
+        padding: 3px;
     }
 
 
@@ -47,6 +55,7 @@
         display: flex;
         justify-content: center;
         align-items: center;
+        background-color: rgba(0, 0, 0, 0.5);
     }
 }
 

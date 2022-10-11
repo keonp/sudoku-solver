@@ -188,10 +188,6 @@ function Table() {
         setCellStatus(table);
     }
 
-    // function handleAboutToggle() {
-
-    // }
-
     function handleValue() {
         // do nothing function to handle value overwriting defaultValue issue
     }
@@ -204,7 +200,7 @@ function Table() {
                 <div className='aboutContainer'>
                     <button className='aboutButton' onClick={() => setAboutToggle(!aboutToggle)}>?</button>
                     {
-                        aboutToggle ? <AboutModal/> : null
+                        aboutToggle ? <AboutModal setAboutToggle={setAboutToggle}/> : null
                     }
                 </div>
                 <table>
