@@ -309,274 +309,139 @@ button:disabled:hover {
   border: 2px solid blue;
 }
 .sudokuDisplay .r0c0 {
-  background-color: peachpuff !important;
-}
-.sudokuDisplay .r0c0:disabled {
-  background-color: peachpuff !important;
+  background-color: peachpuff;
 }
 .sudokuDisplay .r0c1 {
-  background-color: peachpuff !important;
-}
-.sudokuDisplay .r0c1:disabled {
-  background-color: peachpuff !important;
+  background-color: peachpuff;
 }
 .sudokuDisplay .r0c2 {
-  background-color: peachpuff !important;
-}
-.sudokuDisplay .r0c2:disabled {
-  background-color: peachpuff !important;
+  background-color: peachpuff;
 }
 .sudokuDisplay .r1c0 {
-  background-color: peachpuff !important;
-}
-.sudokuDisplay .r1c0:disabled {
-  background-color: peachpuff !important;
+  background-color: peachpuff;
 }
 .sudokuDisplay .r1c1 {
-  background-color: peachpuff !important;
-}
-.sudokuDisplay .r1c1:disabled {
-  background-color: peachpuff !important;
+  background-color: peachpuff;
 }
 .sudokuDisplay .r1c2 {
-  background-color: peachpuff !important;
-}
-.sudokuDisplay .r1c2:disabled {
-  background-color: peachpuff !important;
+  background-color: peachpuff;
 }
 .sudokuDisplay .r2c0 {
-  background-color: peachpuff !important;
-}
-.sudokuDisplay .r2c0:disabled {
-  background-color: peachpuff !important;
+  background-color: peachpuff;
 }
 .sudokuDisplay .r2c1 {
-  background-color: peachpuff !important;
-}
-.sudokuDisplay .r2c1:disabled {
-  background-color: peachpuff !important;
+  background-color: peachpuff;
 }
 .sudokuDisplay .r2c2 {
-  background-color: peachpuff !important;
-}
-.sudokuDisplay .r2c2:disabled {
-  background-color: peachpuff !important;
+  background-color: peachpuff;
 }
 .sudokuDisplay .r0c6 {
-  background-color: peachpuff !important;
-}
-.sudokuDisplay .r0c6:disabled {
-  background-color: peachpuff !important;
+  background-color: peachpuff;
 }
 .sudokuDisplay .r0c7 {
-  background-color: peachpuff !important;
-}
-.sudokuDisplay .r0c7:disabled {
-  background-color: peachpuff !important;
+  background-color: peachpuff;
 }
 .sudokuDisplay .r0c8 {
-  background-color: peachpuff !important;
-}
-.sudokuDisplay .r0c8:disabled {
-  background-color: peachpuff !important;
+  background-color: peachpuff;
 }
 .sudokuDisplay .r1c6 {
-  background-color: peachpuff !important;
-}
-.sudokuDisplay .r1c6:disabled {
-  background-color: peachpuff !important;
+  background-color: peachpuff;
 }
 .sudokuDisplay .r1c7 {
-  background-color: peachpuff !important;
-}
-.sudokuDisplay .r1c7:disabled {
-  background-color: peachpuff !important;
+  background-color: peachpuff;
 }
 .sudokuDisplay .r1c8 {
-  background-color: peachpuff !important;
-}
-.sudokuDisplay .r1c8:disabled {
-  background-color: peachpuff !important;
+  background-color: peachpuff;
 }
 .sudokuDisplay .r2c6 {
-  background-color: peachpuff !important;
-}
-.sudokuDisplay .r2c6:disabled {
-  background-color: peachpuff !important;
+  background-color: peachpuff;
 }
 .sudokuDisplay .r2c7 {
-  background-color: peachpuff !important;
-}
-.sudokuDisplay .r2c7:disabled {
-  background-color: peachpuff !important;
+  background-color: peachpuff;
 }
 .sudokuDisplay .r2c8 {
-  background-color: peachpuff !important;
-}
-.sudokuDisplay .r2c8:disabled {
-  background-color: peachpuff !important;
+  background-color: peachpuff;
 }
 .sudokuDisplay .r3c3 {
-  background-color: peachpuff !important;
-}
-.sudokuDisplay .r3c3:disabled {
-  background-color: peachpuff !important;
+  background-color: peachpuff;
 }
 .sudokuDisplay .r3c4 {
-  background-color: peachpuff !important;
-}
-.sudokuDisplay .r3c4:disabled {
-  background-color: peachpuff !important;
+  background-color: peachpuff;
 }
 .sudokuDisplay .r3c5 {
-  background-color: peachpuff !important;
-}
-.sudokuDisplay .r3c5:disabled {
-  background-color: peachpuff !important;
+  background-color: peachpuff;
 }
 .sudokuDisplay .r4c3 {
-  background-color: peachpuff !important;
-}
-.sudokuDisplay .r4c3:disabled {
-  background-color: peachpuff !important;
+  background-color: peachpuff;
 }
 .sudokuDisplay .r4c4 {
-  background-color: peachpuff !important;
-}
-.sudokuDisplay .r4c4:disabled {
-  background-color: peachpuff !important;
+  background-color: peachpuff;
 }
 .sudokuDisplay .r4c5 {
-  background-color: peachpuff !important;
-}
-.sudokuDisplay .r4c5:disabled {
-  background-color: peachpuff !important;
+  background-color: peachpuff;
 }
 .sudokuDisplay .r5c3 {
-  background-color: peachpuff !important;
-}
-.sudokuDisplay .r5c3:disabled {
-  background-color: peachpuff !important;
+  background-color: peachpuff;
 }
 .sudokuDisplay .r5c4 {
-  background-color: peachpuff !important;
-}
-.sudokuDisplay .r5c4:disabled {
-  background-color: peachpuff !important;
+  background-color: peachpuff;
 }
 .sudokuDisplay .r5c5 {
-  background-color: peachpuff !important;
-}
-.sudokuDisplay .r5c5:disabled {
-  background-color: peachpuff !important;
+  background-color: peachpuff;
 }
 .sudokuDisplay .r6c0 {
-  background-color: peachpuff !important;
-}
-.sudokuDisplay .r6c0:disabled {
-  background-color: peachpuff !important;
+  background-color: peachpuff;
 }
 .sudokuDisplay .r6c1 {
-  background-color: peachpuff !important;
-}
-.sudokuDisplay .r6c1:disabled {
-  background-color: peachpuff !important;
+  background-color: peachpuff;
 }
 .sudokuDisplay .r6c2 {
-  background-color: peachpuff !important;
-}
-.sudokuDisplay .r6c2:disabled {
-  background-color: peachpuff !important;
+  background-color: peachpuff;
 }
 .sudokuDisplay .r7c0 {
-  background-color: peachpuff !important;
-}
-.sudokuDisplay .r7c0:disabled {
-  background-color: peachpuff !important;
+  background-color: peachpuff;
 }
 .sudokuDisplay .r7c1 {
-  background-color: peachpuff !important;
-}
-.sudokuDisplay .r7c1:disabled {
-  background-color: peachpuff !important;
+  background-color: peachpuff;
 }
 .sudokuDisplay .r7c2 {
-  background-color: peachpuff !important;
-}
-.sudokuDisplay .r7c2:disabled {
-  background-color: peachpuff !important;
+  background-color: peachpuff;
 }
 .sudokuDisplay .r8c0 {
-  background-color: peachpuff !important;
-}
-.sudokuDisplay .r8c0:disabled {
-  background-color: peachpuff !important;
+  background-color: peachpuff;
 }
 .sudokuDisplay .r8c1 {
-  background-color: peachpuff !important;
-}
-.sudokuDisplay .r8c1:disabled {
-  background-color: peachpuff !important;
+  background-color: peachpuff;
 }
 .sudokuDisplay .r8c2 {
-  background-color: peachpuff !important;
-}
-.sudokuDisplay .r8c2:disabled {
-  background-color: peachpuff !important;
+  background-color: peachpuff;
 }
 .sudokuDisplay .r6c6 {
-  background-color: peachpuff !important;
-}
-.sudokuDisplay .r6c6:disabled {
-  background-color: peachpuff !important;
+  background-color: peachpuff;
 }
 .sudokuDisplay .r6c7 {
-  background-color: peachpuff !important;
-}
-.sudokuDisplay .r6c7:disabled {
-  background-color: peachpuff !important;
+  background-color: peachpuff;
 }
 .sudokuDisplay .r6c8 {
-  background-color: peachpuff !important;
-}
-.sudokuDisplay .r6c8:disabled {
-  background-color: peachpuff !important;
+  background-color: peachpuff;
 }
 .sudokuDisplay .r7c6 {
-  background-color: peachpuff !important;
-}
-.sudokuDisplay .r7c6:disabled {
-  background-color: peachpuff !important;
+  background-color: peachpuff;
 }
 .sudokuDisplay .r7c7 {
-  background-color: peachpuff !important;
-}
-.sudokuDisplay .r7c7:disabled {
-  background-color: peachpuff !important;
+  background-color: peachpuff;
 }
 .sudokuDisplay .r7c8 {
-  background-color: peachpuff !important;
-}
-.sudokuDisplay .r7c8:disabled {
-  background-color: peachpuff !important;
+  background-color: peachpuff;
 }
 .sudokuDisplay .r8c6 {
-  background-color: peachpuff !important;
-}
-.sudokuDisplay .r8c6:disabled {
-  background-color: peachpuff !important;
+  background-color: peachpuff;
 }
 .sudokuDisplay .r8c7 {
-  background-color: peachpuff !important;
-}
-.sudokuDisplay .r8c7:disabled {
-  background-color: peachpuff !important;
+  background-color: peachpuff;
 }
 .sudokuDisplay .r8c8 {
-  background-color: peachpuff !important;
-}
-.sudokuDisplay .r8c8:disabled {
-  background-color: peachpuff !important;
+  background-color: peachpuff;
 }
 .sudokuDisplay tbody {
   border: 3px solid black;

@@ -2,11 +2,7 @@
     @for $row from $rowStart through $rowEnd {
         @for $col from $colStart through $colEnd {
             .r#{$row}c#{$col} {
-                background-color: peachpuff !important;
-
-                &:disabled {
-                    background-color: peachpuff !important;
-                }
+                background-color: peachpuff;
             }
         }
     }
