@@ -566,14 +566,14 @@ button[disabled] {
   justify-content: center;
   align-items: center;
   background-color: rgba(0, 0, 0, 0.5);
+  z-index: 20;
 }
 .aboutContainer .aboutPage {
   border: 5px solid black;
   border-radius: 15px;
   padding: 15px;
   position: relative;
-  z-index: 10;
-  background-color: peachpuff;
+  background-color: peachpuff !important;
   height: 72%;
   width: 85%;
   overflow-y: auto;
