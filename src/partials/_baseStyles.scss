@@ -38,9 +38,13 @@ button {
         outline: none;
     }
 
-    &[disabled] {
+    &:disabled {
         background-color: $disabledGrey;
         border-color: darkgrey;
         color: $disabledLightGrey;
+
+        &:hover {
+            cursor: auto;
+        }
     }
 }
