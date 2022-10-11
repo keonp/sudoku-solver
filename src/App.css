@@ -285,7 +285,7 @@ button:disabled {
   color: rgb(165, 165, 165);
 }
 button:disabled:hover {
-  cursor: auto;
+  cursor: not-allowed;
 }
 
 .sudokuDisplay .wrapper {
@@ -465,6 +465,10 @@ button:disabled:hover {
   background-color: red;
 }
 .sudokuDisplay .userInputDisabled {
+  color: white !important;
+  background: black !important;
+}
+.sudokuDisplay .userInputDisabled:disabled {
   color: white !important;
   background: black !important;
 }

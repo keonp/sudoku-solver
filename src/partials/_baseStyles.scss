@@ -44,7 +44,7 @@ button {
         color: $disabledLightGrey;
 
         &:hover {
-            cursor: auto;
+            cursor: not-allowed;
         }
     }
 }

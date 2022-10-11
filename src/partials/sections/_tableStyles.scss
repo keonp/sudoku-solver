@@ -58,7 +58,12 @@
     .userInputDisabled {
         color: white !important;
         background: black !important;
+        &:disabled {
+            color: white !important;
+            background: black !important;
+        }
     }
+
 
     .inputButtons {
         height: 40px;
