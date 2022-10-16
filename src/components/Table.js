@@ -175,9 +175,8 @@ function Table() {
         if (result) {
             setCellStatus(updateCells);
         } else {
-            alert("this is an invalid board and has no solution")
+            setInvalidBoard(true);
         }
-        // setCellStatus(solver(updateCells));
         setToggleSolved(true);
     }
 
@@ -191,6 +190,7 @@ function Table() {
         setDisableNumbers(false);
         setConflicts([]);
         setConflictingValue(null);
+        setInvalidBoard(false);
     }
 
     function refreshTable(table) {
@@ -220,9 +220,6 @@ function Table() {
                     </button>
                     {
                         aboutToggle ? <AboutModal setAboutToggle={setAboutToggle}/> : null
-                    }
-                    {
-                        invalidBoard ? null: null
                     }
                 </div>
                 <table>
@@ -288,6 +285,11 @@ function Table() {
                 <div className='buttonSelections'>
                     <button disabled={toggleSolved} onClick={solvePuzzle}>Solve Puzzle</button>
                     <button className='restartButton' onClick={handleRefresh}>Restart</button>
+                </div>
+                <div className='invalidMessageContainer'>
+                    {
+                        invalidBoard ? <p>This is an invalid board with no solution.</p> : null
+                    }
                 </div>
             </div>
         </section>

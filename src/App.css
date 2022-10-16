@@ -497,6 +497,14 @@ button:disabled:hover {
 .sudokuDisplay .restartButton:active {
   background-color: rgb(135, 228, 235);
 }
+.sudokuDisplay .invalidMessageContainer {
+  text-align: center;
+  text-transform: uppercase;
+}
+.sudokuDisplay .invalidMessageContainer p {
+  color: crimson;
+  font-weight: 700;
+}
 
 @media (max-width: 600px) {
   .sudokuDisplay h1 {
