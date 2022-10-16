@@ -93,6 +93,16 @@
             background-color: $lightTeal;
         }
     }
+
+    .invalidMessageContainer{
+        text-align: center;
+        text-transform: uppercase;
+
+        p {
+            color: crimson;
+            font-weight: 700;
+        }
+    }
 }
 
 @media(max-width: 600px) {

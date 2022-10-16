@@ -27,6 +27,7 @@ function Table() {
     const [userInputState, setUserInputState] = useState(false); // A state that acts as a toggle for adding a class that identifies inputs added by the user
     const [disableAll, setDisableAll] = useState(false);
     const[aboutToggle, setAboutToggle] = useState(false);
+    const [invalidBoard, setInvalidBoard] = useState(false);
 
     useEffect(() => {
         if (aboutToggle) {
@@ -112,20 +113,20 @@ function Table() {
 
         if (!(isNumber && conflictingValue)) {
             if (isNumber) {
-                console.log("you added the number: " +inputElement.value);
+                // console.log("you added the number: " +inputElement.value);
                 updateInputCells(inputElement, inputElement.value);
     
             } else if (inputElement.value === "" && conflicts[0] && (CompareString(cell, conflicts[0]) || CompareString(cell, conflicts[1]))) {
-                console.log("you deleted a conflicting number");
+                // console.log("you deleted a conflicting number");
                 updateInputCells(inputElement, inputElement.value, conflicts);
     
             } else if (inputElement.value === "") {
-                console.log("you deleted a number");
+                // console.log("you deleted a number");
                 updateInputCells(inputElement, inputElement.value);
     
             } else {
                 inputElement.value = "";
-                console.log("invalid character")
+                // console.log("invalid character");
             }
         }
     }
@@ -169,7 +170,13 @@ function Table() {
         const updateCells = [...cellStatus];
         setUserInputState('userInputDisabled');
         setDisableAll(true);
-        setCellStatus(solver(updateCells));
+        const result = solver(updateCells);
+
+        if (result) {
+            setCellStatus(updateCells);
+        } else {
+            setInvalidBoard(true);
+        }
         setToggleSolved(true);
     }
 
@@ -183,6 +190,7 @@ function Table() {
         setDisableNumbers(false);
         setConflicts([]);
         setConflictingValue(null);
+        setInvalidBoard(false);
     }
 
     function refreshTable(table) {
@@ -277,6 +285,11 @@ function Table() {
                 <div className='buttonSelections'>
                     <button disabled={toggleSolved} onClick={solvePuzzle}>Solve Puzzle</button>
                     <button className='restartButton' onClick={handleRefresh}>Restart</button>
+                </div>
+                <div className='invalidMessageContainer'>
+                    {
+                        invalidBoard ? <p>This is an invalid board with no solution.</p> : null
+                    }
                 </div>
             </div>
         </section>
